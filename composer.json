@@ -10,6 +10,8 @@
     "require": {
         "php": "^8.3",
         "guzzlehttp/guzzle": "^7.2",
+        "he4rt/message": "*",
+        "internachi/modular": "^2.3",
         "laravel/framework": "^v12",
         "laravel/sanctum": "^v4",
         "laravel/tinker": "^v2",
@@ -22,8 +24,8 @@
         "laravel/sail": "^v1",
         "mockery/mockery": "^1",
         "nunomaduro/collision": "^v8",
-        "phpunit/phpunit": "^12.1.2",
-        "spatie/laravel-ignition": "^2.9.1",
+        "pestphp/pest": "^4.1",
+        "pestphp/pest-plugin-drift": "^4.0",
         "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
@@ -69,5 +71,14 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "app-modules/*",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
 }
