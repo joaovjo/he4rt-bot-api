@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.3",
         "guzzlehttp/guzzle": "^7.2",
+        "he4rt/badge": "*",
         "he4rt/message": "*",
         "internachi/modular": "^2.3",
         "laravel/framework": "^v12",
