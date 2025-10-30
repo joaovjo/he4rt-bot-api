@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use He4rt\Badge\Actions\PersistBadge;
 use He4rt\Badge\Contracts\BadgeRepository;
 use He4rt\Badge\DTOs\NewBadgeDTO;
@@ -8,7 +10,7 @@ use Mockery as m;
 
 uses(BadgeProviderTrait::class);
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->badgeRepositoryStub = m::mock(BadgeRepository::class);
     $this->badgeEntity = $this->validBadgeEntity();
     $this->badgeDTO = new NewBadgeDTO(
@@ -21,11 +23,11 @@ beforeEach(function () {
     );
 });
 
-afterEach(function () {
+afterEach(function (): void {
     m::close();
 });
 
-test('persist badge success', function () {
+test('persist badge success', function (): void {
     $this->badgeRepositoryStub
         ->shouldReceive('create')
         ->with($this->badgeDTO)

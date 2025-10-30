@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBadgeRequest extends FormRequest
+final class CreateBadgeRequest extends FormRequest
 {
     public function authorize(): bool
     {

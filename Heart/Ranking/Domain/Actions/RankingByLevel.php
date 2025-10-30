@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Ranking\Domain\Actions;
 
 use Heart\Ranking\Domain\Repositories\RankingRepository;
 use Heart\Shared\Domain\Paginator;
 
-class RankingByLevel
+final readonly class RankingByLevel
 {
     public function __construct(
-        private readonly RankingRepository $rankingRepository
-    ) {
-    }
+        private RankingRepository $rankingRepository
+    ) {}
 
     public function handle(): Paginator
     {

@@ -1,29 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Actions;
 
+use He4rt\Message\DTOs\NewMessageDTO;
 use Heart\Character\Application\FindCharacterIdByUserId;
 use Heart\Character\Domain\Actions\IncrementExperience;
 use Heart\Meeting\Application\AttendMeeting;
-use He4rt\Message\Actions\PersistMessage;
-use He4rt\Message\DTOs\NewMessageDTO;
 use Heart\Provider\Application\FindProvider;
 use Heart\Provider\Application\NewAccountByProvider;
 use Heart\Provider\Domain\Entities\ProviderEntity;
 use Heart\Provider\Infrastructure\Exceptions\ProviderException;
 use Illuminate\Support\Facades\Cache;
 
-class NewMessage
+final readonly class NewMessage
 {
     public function __construct(
-        private readonly PersistMessage $persistMessage,
-        private readonly FindProvider $findProvider,
-        private readonly FindCharacterIdByUserId $findCharacterId,
-        private readonly IncrementExperience $characterExperience,
-        private readonly AttendMeeting $attendMeeting,
-        private readonly NewAccountByProvider $createAccount
-    ) {
-    }
+        private PersistMessage $persistMessage,
+        private FindProvider $findProvider,
+        private FindCharacterIdByUserId $findCharacterId,
+        private IncrementExperience $characterExperience,
+        private AttendMeeting $attendMeeting,
+        private NewAccountByProvider $createAccount
+    ) {}
 
     public function persist(array $payload): void
     {
@@ -38,7 +38,7 @@ class NewMessage
             $providerEntity = $this->createAccount->handle(
                 $messageDTO->provider,
                 $messageDTO->providerId,
-                'discord-' . $messageDTO->providerId
+                'discord-'.$messageDTO->providerId
             );
         }
 

@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Infrastructure\Models;
 
+use Carbon\Carbon;
 use Heart\Meeting\Infrastructure\Factories\MeetingTypeFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,9 +13,9 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property string $name
  * @property int $week_day
- * @property \Carbon\Carbon $start_at
+ * @property Carbon $start_at
  */
-class MeetingType extends Model
+final class MeetingType extends Model
 {
     use HasFactory;
 
@@ -24,26 +27,26 @@ class MeetingType extends Model
         'start_at',
     ];
 
-    public function startAt(): Attribute
+    protected function startAt(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->generateStartAt($value),
+            get: fn (string $value) => $this->generateStartAt($value),
         );
-    }
-
-    private function generateStartAt(string $value)
-    {
-        $hours = (string) intdiv($value, 60);
-        $minutes = (string) $value % 60;
-
-        $hours = str_pad($hours, 2, '0', STR_PAD_LEFT);
-        $minutes = str_pad($minutes, 2, '0', STR_PAD_LEFT);
-
-        return $hours.':'.$minutes;
     }
 
     protected static function newFactory(): MeetingTypeFactory
     {
         return MeetingTypeFactory::new();
+    }
+
+    private function generateStartAt(string $value): string
+    {
+        $hours = (string) intdiv($value, 60);
+        $minutes = $value % 60;
+
+        $hours = mb_str_pad($hours, 2, '0', STR_PAD_LEFT);
+        $minutes = mb_str_pad($minutes, 2, '0', STR_PAD_LEFT);
+
+        return $hours.':'.$minutes;
     }
 }

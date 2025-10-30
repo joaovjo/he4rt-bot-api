@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character;
 
 use Heart\Badges\Domain\Entities\BadgeEntity;

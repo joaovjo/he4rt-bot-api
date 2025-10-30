@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Badges\Domain\Actions;
 
 use Heart\Badges\Domain\Actions\PersistBadge;
@@ -11,7 +13,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Badges\BadgeProviderTrait;
 
-class PersistBadgeTest extends TestCase
+final class PersistBadgeTest extends TestCase
 {
     use BadgeProviderTrait;
 
@@ -21,7 +23,7 @@ class PersistBadgeTest extends TestCase
 
     private NewBadgeDTO $badgeDTO;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->badgeRepositoryStub = m::mock(BadgeRepository::class);
@@ -36,13 +38,13 @@ class PersistBadgeTest extends TestCase
         );
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testPersistBadgeSuccess(): void
+    public function test_persist_badge_success(): void
     {
         $this->badgeRepositoryStub
             ->shouldReceive('create')

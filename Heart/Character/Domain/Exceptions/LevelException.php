@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 
-class LevelException extends Exception
+final class LevelException extends Exception
 {
     public static function notExists(string $experience): self
     {

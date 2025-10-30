@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Integrations\Twitch\Subscriber\Domain;
 
 use Heart\Authentication\OAuth\Domain\DTO\OAuthAccessDTO;

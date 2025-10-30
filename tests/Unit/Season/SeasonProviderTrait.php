@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Season;
 
-use Carbon\Carbon;
 use Heart\Season\Domain\Entities\SeasonEntity;
+use Illuminate\Support\Facades\Date;
 
 trait SeasonProviderTrait
 {
@@ -17,8 +19,8 @@ trait SeasonProviderTrait
             'participants_count' => 1212,
             'meeting_count' => 12,
             'badges_count' => 12,
-            'started_at' => Carbon::now()->toString(),
-            'ended_at' => Carbon::now()->toString(),
+            'started_at' => Date::now()->toString(),
+            'ended_at' => Date::now()->toString(),
             ...$fields,
         ];
     }

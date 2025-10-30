@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Infrastructure\Models;
 
+use Carbon\Carbon;
 use Heart\Badges\Infrastructure\Model\Badge;
 use Heart\Character\Domain\Entities\LevelEntity;
 use Heart\Character\Infrastructure\Factories\CharacterFactory;
@@ -18,9 +21,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $user_id
  * @property int reputation
  * @property int $experience
- * @property \Carbon\Carbon $daily_bonus_claimed_at
+ * @property Carbon $daily_bonus_claimed_at
  */
-class Character extends Model
+final class Character extends Model
 {
     use HasFactory;
     use HasUuids;
@@ -37,20 +40,20 @@ class Character extends Model
 
     protected $appends = [
         'ranking',
-        'level'
+        'level',
     ];
 
-    public function getRankingAttribute(): int
+    protected function getRankingAttribute(): int
     {
         return $this->newQuery()
-                ->orderByDesc('experience')
-                ->pluck('id')
-                ->filter(fn ($id) => $id == $this->getKey())
-                ->keys()
-                ->first() + 1;
+            ->orderByDesc('experience')
+            ->pluck('id')
+            ->filter(fn ($id) => $id === $this->getKey())
+            ->keys()
+            ->first() + 1;
     }
 
-    public function getLevelAttribute(): int
+    protected function getLevelAttribute(): int
     {
         return (new LevelEntity($this->experience))->getLevel();
     }

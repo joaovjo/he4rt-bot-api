@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Infrastructure\Models;
 
 use Heart\Provider\Infrastructure\Factories\TokenFactory;
@@ -14,10 +16,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $access_token
  * @property string $refresh_token
  */
-class Token extends Model
+final class Token extends Model
 {
-    use HasFactory, HasUuids;
-
+    use HasFactory;
+    use HasUuids;
     protected $table = 'subscriber_providers_tokens';
 
     protected $fillable = [

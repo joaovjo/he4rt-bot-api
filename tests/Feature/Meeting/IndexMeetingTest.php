@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Meeting;
 
 use Heart\Meeting\Infrastructure\Models\Meeting;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class IndexMeetingTest extends TestCase
+final class IndexMeetingTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testBotCanListAllMeetings(): void
+    public function test_bot_can_list_all_meetings(): void
     {
         // Arrange
         Meeting::factory()->unfinished()->create();

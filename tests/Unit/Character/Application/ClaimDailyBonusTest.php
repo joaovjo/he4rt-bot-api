@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character\Application;
 
 use Heart\Character\Application\ClaimDailyBonus;
@@ -12,7 +14,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Character\ProviderProviderTrait;
 
-class ClaimDailyBonusTest extends TestCase
+final class ClaimDailyBonusTest extends TestCase
 {
     use ProviderProviderTrait;
 
@@ -24,7 +26,7 @@ class ClaimDailyBonusTest extends TestCase
 
     private ProviderEntity $providerEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->persistDailyStub = m::mock(PersistDailyBonus::class);
@@ -33,13 +35,13 @@ class ClaimDailyBonusTest extends TestCase
         $this->providerEntity = $this->validProviderEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testClaimDailyBonusSuccess(): void
+    public function test_claim_daily_bonus_success(): void
     {
         $this->findProviderStub
             ->shouldReceive('handle')

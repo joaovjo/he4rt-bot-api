@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Domain\Repositories;
 
 use Heart\Authentication\OAuth\Domain\DTO\OAuthAccessDTO;

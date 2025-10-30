@@ -1,15 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Infrastructure\Factories;
 
+use Illuminate\Database\Eloquent\Model;
 use Heart\Character\Infrastructure\Models\Character;
 use Heart\User\Infrastructure\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Illuminate\Database\Eloquent\Model>
+ * @extends Factory<Model>
  */
-class CharacterFactory extends Factory
+final class CharacterFactory extends Factory
 {
     protected $model = Character::class;
 

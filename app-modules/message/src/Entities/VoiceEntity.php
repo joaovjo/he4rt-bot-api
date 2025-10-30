@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Entities;
 
 use Heart\Character\Domain\Enums\VoiceStatesEnum;
 
-class VoiceEntity
+final class VoiceEntity
 {
     public function __construct(
         public string $id,
@@ -13,8 +15,7 @@ class VoiceEntity
         public string $channelName,
         public VoiceStatesEnum $voiceState,
         public int $obtainedExperience,
-    ) {
-    }
+    ) {}
 
     public static function make(array $payload): self
     {

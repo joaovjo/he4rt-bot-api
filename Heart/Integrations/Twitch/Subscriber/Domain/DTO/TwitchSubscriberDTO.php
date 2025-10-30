@@ -1,21 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Integrations\Twitch\Subscriber\Domain\DTO;
 
 use Heart\Integrations\Twitch\Subscriber\Domain\Enum\SubscriptionTiersEnum;
 
-class TwitchSubscriberDTO
+final readonly class TwitchSubscriberDTO
 {
     public function __construct(
-        public readonly string $broadcasterId,
-        public readonly string $broadcasterLogin,
-        public readonly string $broadcasterName,
-        public readonly SubscriptionTiersEnum $tier,
-        public readonly bool $isGift,
-        public readonly ?string $gifterLogin = null,
-        public readonly ?string $gifterName = null,
-    ) {
-    }
+        public string $broadcasterId,
+        public string $broadcasterLogin,
+        public string $broadcasterName,
+        public SubscriptionTiersEnum $tier,
+        public bool $isGift,
+        public ?string $gifterLogin = null,
+        public ?string $gifterName = null,
+    ) {}
 
     public static function make(array $payload): self
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character;
 
 use Heart\Character\Domain\Entities\CharacterEntity;
@@ -18,7 +20,7 @@ trait CharacterProviderTrait
         ];
     }
 
-    public function validCharacterEntity(array $fields = [])
+    public function validCharacterEntity(array $fields = []): CharacterEntity
     {
         return CharacterEntity::make($this->validCharacterPayload());
     }

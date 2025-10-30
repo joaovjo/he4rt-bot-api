@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Presentation\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use Heart\Provider\Presentation\Requests\CreateProviderRequest;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProvidersController extends Controller
+final class ProvidersController extends Controller
 {
     public function postProvider(
         CreateProviderRequest $request,

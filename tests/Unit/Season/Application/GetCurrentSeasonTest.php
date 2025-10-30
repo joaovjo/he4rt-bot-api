@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Season\Application;
 
 use Heart\Season\Application\GetCurrentSeason;
@@ -10,7 +12,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Season\SeasonProviderTrait;
 
-class GetCurrentSeasonTest extends TestCase
+final class GetCurrentSeasonTest extends TestCase
 {
     use SeasonProviderTrait;
 
@@ -18,20 +20,20 @@ class GetCurrentSeasonTest extends TestCase
 
     private SeasonEntity $seasonEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->seasonRepositoryStub = m::mock(SeasonRepository::class);
         $this->seasonEntity = $this->validSeasonEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testGetCurrentSeason(): void
+    public function test_get_current_season(): void
     {
         $this->seasonRepositoryStub
             ->shouldReceive('getCurrent')

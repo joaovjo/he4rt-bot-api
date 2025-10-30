@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Character;
 
 use Heart\Badges\Infrastructure\Model\Badge;
@@ -10,11 +12,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class ClaimCharacterBadgeTest extends TestCase
+final class ClaimCharacterBadgeTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testCanClaimBadge()
+    public function test_can_claim_badge(): void
     {
         $badge = Badge::factory()
             ->create();

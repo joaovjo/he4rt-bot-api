@@ -1,16 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Application;
 
 use Heart\User\Domain\Entities\UserEntity;
 use Heart\User\Domain\Exceptions\UserEntityException;
 use Heart\User\Domain\Repositories\UserRepository;
 
-class GetUser
+final readonly class GetUser
 {
-    public function __construct(private readonly UserRepository $repository)
-    {
-    }
+    public function __construct(private UserRepository $repository) {}
 
     /** @throws UserEntityException */
     public function handle(string $userId): UserEntity

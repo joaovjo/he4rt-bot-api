@@ -1,18 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Gamefication\Season;
 use Illuminate\Database\Seeder;
 
-class SeasonSeeder extends Seeder
+final class SeasonSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         foreach (config('he4rt.seasons') as $season) {
             Season::query()->create($season);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Laravel\Sanctum\Sanctum;
 
 return [
@@ -58,6 +60,5 @@ return [
     | request. You may change the middleware listed below as required.
     |
     */
-
 
 ];

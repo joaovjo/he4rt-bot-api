@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Domain\Entities;
 
 use Heart\Badges\Domain\Collections\BadgeCollection;
@@ -7,19 +9,18 @@ use Heart\Character\Domain\Collections\PastSeasonCollection;
 use Heart\Character\Domain\Entities\CharacterEntity;
 use JsonSerializable;
 
-class ProfileEntity implements JsonSerializable
+final readonly class ProfileEntity implements JsonSerializable
 {
     public function __construct(
-        public readonly string $id,
-        public readonly string $username,
-        public readonly InformationEntity $informationEntity,
-        public readonly AddressEntity $addressEntity,
-        public readonly array $characterEntity,
-        public readonly array $connectedProviders,
-        public readonly BadgeCollection $badges,
-        public readonly PastSeasonCollection $pastSeasons,
-    ) {
-    }
+        public string $id,
+        public string $username,
+        public InformationEntity $informationEntity,
+        public AddressEntity $addressEntity,
+        public array $characterEntity,
+        public array $connectedProviders,
+        public BadgeCollection $badges,
+        public PastSeasonCollection $pastSeasons,
+    ) {}
 
     public static function make(array $payload): self
     {

@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 use He4rt\Badge\Actions\CreateBadge;
 use He4rt\Badge\Actions\PersistBadge;
@@ -9,19 +10,19 @@ use Mockery as m;
 
 uses(BadgeProviderTrait::class);
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->persistBadgeStub = m::mock(PersistBadge::class);
     $this->badgeEntity = $this->validBadgeEntity();
 });
 
-afterEach(function () {
+afterEach(function (): void {
     m::close();
 });
 
-test('create badge application success', function () {
+test('create badge application success', function (): void {
     $this->persistBadgeStub
         ->shouldReceive('handle')
-        ->with(Mockery::type(NewBadgeDTO::class))
+        ->with(m::type(NewBadgeDTO::class))
         ->once()
         ->andReturn($this->badgeEntity);
 
@@ -36,4 +37,3 @@ test('create badge application success', function () {
         'active' => true,
     ]);
 });
-

@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Domain\Actions;
 
 use Heart\Meeting\Domain\Repositories\MeetingRepository;
 
-class PersistAttendMeeting
+final readonly class PersistAttendMeeting
 {
-    public function __construct(private readonly MeetingRepository $meetingRepository)
-    {
-    }
+    public function __construct(private MeetingRepository $meetingRepository) {}
 
     public function handle(string $meetingId, string $userId): void
     {

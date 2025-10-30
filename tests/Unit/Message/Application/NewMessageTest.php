@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Message\Application;
 
 use Heart\Character\Application\FindCharacterIdByUserId;
@@ -16,10 +18,27 @@ use Mockery as m;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
-class NewMessageTest extends TestCase
+final class NewMessageTest extends TestCase
 {
+    public static function dataProvider(): array
+    {
+        return [
+            'twitch #1' => [
+                'provider' => 'twitch',
+                'payload' => [
+                    'provider' => 'twitch',
+                    'provider_id' => '1234',
+                    'provider_message_id' => '78781237',
+                    'channel_id' => '31231267312',
+                    'content' => 'deixa o sub',
+                    'sent_at' => '2023-01-18 22:36:32',
+                ],
+            ],
+        ];
+    }
+
     #[DataProvider('dataProvider')]
-    public function testNewMessage(string $provider, array $payload)
+    public function test_new_message(string $provider, array $payload): void
     {
         Cache::tags(['meetings'])->put('current-meeting', 'é o canhas');
         $findProviderStub = m::mock(FindProvider::class);
@@ -76,22 +95,5 @@ class NewMessageTest extends TestCase
 
         $action->persist($payload);
         Cache::flush();
-    }
-
-    public static function dataProvider(): array
-    {
-        return [
-            'twitch #1' => [
-                'provider' => 'twitch',
-                'payload' => [
-                    'provider' => 'twitch',
-                    'provider_id' => '1234',
-                    'provider_message_id' => '78781237',
-                    'channel_id' => '31231267312',
-                    'content' => 'deixa o sub',
-                    'sent_at' => '2023-01-18 22:36:32',
-                ],
-            ],
-        ];
     }
 }

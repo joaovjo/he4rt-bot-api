@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Date;
 
 return [
@@ -14,7 +16,7 @@ return [
         'guild_id' => env('HE4RT_DISCORD_GUILD', '452926217558163456'),
     ],
     'channels' => [
-        'commands' => '542840741588762637'
+        'commands' => '542840741588762637',
     ],
     'seasons' => [
         [

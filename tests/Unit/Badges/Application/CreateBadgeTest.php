@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Badges\Application;
 
 use Heart\Badges\Application\CreateBadge;
 use Heart\Badges\Domain\Actions\PersistBadge;
 use Heart\Badges\Domain\DTOs\NewBadgeDTO;
 use Heart\Badges\Domain\Entities\BadgeEntity;
-use Mockery;
 use Mockery as m;
 use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Badges\BadgeProviderTrait;
 
-class CreateBadgeTest extends TestCase
+final class CreateBadgeTest extends TestCase
 {
     use BadgeProviderTrait;
 
@@ -22,7 +23,7 @@ class CreateBadgeTest extends TestCase
 
     private array $payload;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->persistBadgeStub = m::mock(PersistBadge::class);
@@ -30,17 +31,17 @@ class CreateBadgeTest extends TestCase
         $this->payload = $this->dataProvider();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testCreateBadgeApplicationSuccess(): void
+    public function test_create_badge_application_success(): void
     {
         $this->persistBadgeStub
             ->shouldReceive('handle')
-            ->with(Mockery::type(NewBadgeDTO::class))
+            ->with(m::type(NewBadgeDTO::class))
             ->once()
             ->andReturn($this->badgeEntity);
 

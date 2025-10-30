@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Actions;
 
 use He4rt\Badge\Contracts\BadgeRepository;
 
-class DeleteBadge
+final readonly class DeleteBadge
 {
-    public function __construct(private readonly BadgeRepository $badgeRepository)
-    {
-    }
+    public function __construct(private BadgeRepository $badgeRepository) {}
 
     public function handle(string $badgeId): void
     {

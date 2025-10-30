@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Application;
 
 use Heart\Feedback\Domain\Actions\PersistFeedbackReview;
@@ -7,13 +9,12 @@ use Heart\Feedback\Domain\DTOs\FeedbackReviewDTO;
 use Heart\Provider\Application\FindProvider;
 use Heart\Provider\Domain\Enums\ProviderEnum;
 
-class ReviewFeedback
+final readonly class ReviewFeedback
 {
     public function __construct(
-        private readonly PersistFeedbackReview $persistReview,
-        private readonly FindProvider $findProvider,
-    ) {
-    }
+        private PersistFeedbackReview $persistReview,
+        private FindProvider $findProvider,
+    ) {}
 
     public function handle(
         string $feedbackId,

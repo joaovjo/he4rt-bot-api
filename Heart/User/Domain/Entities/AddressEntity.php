@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Domain\Entities;
 
-class AddressEntity implements \JsonSerializable
+use JsonSerializable;
+
+final class AddressEntity implements JsonSerializable
 {
     public function __construct(
         public string $id,
-        private ?string $country,
-        private ?string $state,
-        private ?string $city,
-        private ?int $zipCode,
-    ) {
-    }
+        private readonly ?string $country,
+        private readonly ?string $state,
+    ) {}
 
     public static function make(array $payload): self
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Authentication\OAuth\Domain\DTO;
 
 abstract class OAuthUserDTO
@@ -12,12 +14,11 @@ abstract class OAuthUserDTO
         public string $name,
         public ?string $email,
         public ?string $avatarUrl,
-    ) {
-    }
+    ) {}
 
     abstract public static function make(OAuthAccessDTO $credentials, array $payload): self;
 
-    public function toDatabase(): array
+    final public function toDatabase(): array
     {
         return [
             'provider' => $this->providerName,

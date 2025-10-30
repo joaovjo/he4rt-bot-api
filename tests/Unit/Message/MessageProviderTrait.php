@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Message;
 
-use Carbon\Carbon;
+use DateTimeImmutable;
 use Heart\Message\Domain\Entities\MessageEntity;
+use Illuminate\Support\Facades\Date;
 
 trait MessageProviderTrait
 {
@@ -16,7 +19,7 @@ trait MessageProviderTrait
             'season_id' => 12,
             'channel_id' => 'canal-foda',
             'content' => 'conteudo-foda',
-            'sent_at' => new \DateTime(Carbon::now()->toString()),
+            'sent_at' => new DateTimeImmutable(Date::now()->toString()),
             'obtained_experience' => 12,
             ...$fields,
         ];

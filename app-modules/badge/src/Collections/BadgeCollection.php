@@ -1,20 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Collections;
 
 use ArrayIterator;
 use He4rt\Badge\Entities\BadgeEntity;
 use JsonSerializable;
 
-class BadgeCollection extends ArrayIterator implements JsonSerializable
+final class BadgeCollection extends ArrayIterator implements JsonSerializable
 {
-    public function add(BadgeEntity $badgeEntity): self
-    {
-        $this->append($badgeEntity);
-
-        return $this;
-    }
-
     public static function make(array $badgesPayload): self
     {
         $badges = [];
@@ -23,6 +18,13 @@ class BadgeCollection extends ArrayIterator implements JsonSerializable
         }
 
         return new self($badges);
+    }
+
+    public function add(BadgeEntity $badgeEntity): self
+    {
+        $this->append($badgeEntity);
+
+        return $this;
     }
 
     public function jsonSerialize(): array

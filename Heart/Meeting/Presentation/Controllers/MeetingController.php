@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Presentation\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -11,7 +13,7 @@ use Heart\Meeting\Presentation\Requests\MeetingRequest;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class MeetingController extends Controller
+final class MeetingController extends Controller
 {
     public function getMeetings(string $provider, PaginateMeetings $paginateMeetings): JsonResponse
     {
@@ -28,10 +30,10 @@ class MeetingController extends Controller
                 $startMeeting->handle($provider, $request->input('provider_id'), $request->input('meeting_type_id')),
                 Response::HTTP_CREATED
             );
-        } catch (MeetingException $e) {
+        } catch (MeetingException $meetingException) {
             return response()->json([
-                'error' => $e->getMessage(),
-            ], $e->getCode());
+                'error' => $meetingException->getMessage(),
+            ], $meetingException->getCode());
         }
     }
 

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Infrastructure\Factories;
 
 use Heart\Feedback\Infrastructure\Models\Feedback;
 use Heart\User\Infrastructure\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FeedbackFactory extends Factory
+final class FeedbackFactory extends Factory
 {
     protected $model = Feedback::class;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Providers\Application;
 
 use Heart\Provider\Application\FindProvider;
@@ -10,9 +12,9 @@ use Illuminate\Support\Facades\Cache;
 use Mockery as m;
 use Tests\TestCase;
 
-class FindProviderTest extends TestCase
+final class FindProviderTest extends TestCase
 {
-    public function testCachedProvider()
+    public function test_cached_provider(): void
     {
         $cacheKey = 'provider-twitch-123';
         $getProviderStub = m::mock(GetProviderById::class);

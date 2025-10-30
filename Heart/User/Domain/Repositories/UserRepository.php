@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Domain\Repositories;
 
 use Heart\Shared\Domain\Paginator;

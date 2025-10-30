@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Domain\Entities;
 
 use JsonSerializable;
 
-class FeedbackEntity implements JsonSerializable
+final readonly class FeedbackEntity implements JsonSerializable
 {
     public function __construct(
-        private readonly string $id,
-        private readonly string $senderId,
-        private readonly string $targetId,
-        private readonly string $type,
-        private readonly string $message,
-    ) {
-    }
+        private string $id,
+        private string $senderId,
+        private string $targetId,
+        private string $type,
+        private string $message,
+    ) {}
 
     public static function make(array $payload): self
     {

@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Meeting\Domain\Actions;
 
 use Heart\Meeting\Domain\Actions\PersistAttendMeeting;
 use Heart\Meeting\Domain\DTO\NewMeetingDTO;
 use Heart\Meeting\Domain\Entities\MeetingEntity;
 use Heart\Meeting\Domain\Repositories\MeetingRepository;
-use Mockery\MockInterface;
 use Mockery as m;
+use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Meeting\MeetingProviderTrait;
 
-class PersistAttendMeetingTest extends TestCase
+final class PersistAttendMeetingTest extends TestCase
 {
     use MeetingProviderTrait;
     private MockInterface $meetingTypeRepositoryStub;
@@ -20,20 +22,20 @@ class PersistAttendMeetingTest extends TestCase
 
     private NewMeetingDTO $payloadDTO;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->meetingTypeRepositoryStub = m::mock(MeetingRepository::class);
         $this->meetingEntity = $this->validMeetingEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testPersistAttendMeeting(): void
+    public function test_persist_attend_meeting(): void
     {
         $this->meetingTypeRepositoryStub
             ->shouldReceive('attendMeeting')

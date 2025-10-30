@@ -1,20 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Application;
 
 use Heart\Badges\Application\FindBadgeBySlug;
 use Heart\Character\Domain\Actions\PersistClaimedBadge;
 use Heart\Provider\Application\FindProvider;
 
-class ClaimCharacterBadge
+final readonly class ClaimCharacterBadge
 {
     public function __construct(
-        private readonly PersistClaimedBadge $claimBadge,
-        private readonly FindProvider $findProvider,
-        private readonly FindCharacterIdByUserId $findCharacter,
-        private readonly FindBadgeBySlug $findBadgeBySlug,
-    ) {
-    }
+        private PersistClaimedBadge $claimBadge,
+        private FindProvider $findProvider,
+        private FindCharacterIdByUserId $findCharacter,
+        private FindBadgeBySlug $findBadgeBySlug,
+    ) {}
 
     public function handle(string $provider, string $providerId, string $badgeSlug): void
     {

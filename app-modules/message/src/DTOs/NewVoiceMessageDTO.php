@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\DTOs;
 
 use Heart\Character\Domain\Enums\VoiceStatesEnum;
 use Heart\Provider\Domain\Enums\ProviderEnum;
 
-class NewVoiceMessageDTO
+final readonly class NewVoiceMessageDTO
 {
     public function __construct(
-        public readonly ProviderEnum $provider,
-        public readonly string $providerId,
-        public readonly VoiceStatesEnum $voiceState,
-        public readonly string $channelName,
-    ) {
-    }
+        public ProviderEnum $provider,
+        public string $providerId,
+        public VoiceStatesEnum $voiceState,
+        public string $channelName,
+    ) {}
 
     public static function make(array $payload): self
     {

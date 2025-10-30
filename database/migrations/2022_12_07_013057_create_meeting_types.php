@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Heart\Meeting\Infrastructure\Models\MeetingType;
 use Illuminate\Database\Migrations\Migration;
 
@@ -7,18 +9,16 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        MeetingType::create([
+        MeetingType::query()->create([
             'name' => 'Reunião Semanal',
             'week_day' => 1,
             'start_at' => 1320,
         ]);
 
-        MeetingType::create([
+        MeetingType::query()->create([
             'name' => 'Reunião das Primas',
             'week_day' => 2,
             'start_at' => 1200,
@@ -27,11 +27,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        MeetingType::whereIn('name', ['Reunião Semanal', 'Reunião das Primas'])->forceDelete();
+        MeetingType::query()->whereIn('name', ['Reunião Semanal', 'Reunião das Primas'])->forceDelete();
     }
 };

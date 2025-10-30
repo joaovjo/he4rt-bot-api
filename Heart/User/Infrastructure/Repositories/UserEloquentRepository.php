@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Infrastructure\Repositories;
 
 use Heart\Shared\Domain\Paginator;
@@ -12,11 +14,11 @@ use Heart\User\Infrastructure\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Ramsey\Uuid\Uuid;
 
-class UserEloquentRepository implements UserRepository
+final readonly class UserEloquentRepository implements UserRepository
 {
     private Builder $query;
 
-    public function __construct(private readonly User $model)
+    public function __construct(private User $model)
     {
         $this->query = $this->model->newQuery();
     }
@@ -46,7 +48,7 @@ class UserEloquentRepository implements UserRepository
         $user = $this->query->where('username', $username)
             ->first();
 
-        if (!$user) {
+        if (! $user) {
             return null;
         }
 

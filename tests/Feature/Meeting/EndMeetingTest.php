@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Meeting;
 
 use Heart\Meeting\Infrastructure\Models\Meeting;
@@ -7,11 +9,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
-class EndMeetingTest extends TestCase
+final class EndMeetingTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testEndMeeting(): void
+    public function test_end_meeting(): void
     {
         $meeting = Meeting::factory()->create();
         Cache::tags(['meetings'])->set('current-meeting', $meeting->id);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +11,7 @@ use He4rt\Message\Http\Requests\CreateMessageRequest;
 use He4rt\Message\Http\Requests\CreateVoiceMessageRequest;
 use Illuminate\Http\Response;
 
-class MessagesController extends Controller
+final class MessagesController extends Controller
 {
     public function postMessage(
         CreateMessageRequest $request,

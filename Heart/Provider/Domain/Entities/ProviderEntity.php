@@ -1,26 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Domain\Entities;
 
 use Heart\Provider\Domain\ValueObjects\ProviderData;
 
-class ProviderEntity
+final readonly class ProviderEntity
 {
-    public readonly string $id;
-
-    public readonly string $userId;
-
-    public readonly ProviderData $provider;
+    public ProviderData $provider;
 
     public function __construct(
-        string $id,
-        string $userId,
+        public string $id,
+        public string $userId,
         string $provider,
         string $providerId,
         ?string $providerEmail
     ) {
-        $this->id = $id;
-        $this->userId = $userId;
         $this->provider = new ProviderData($provider, $providerId, $providerEmail);
     }
 

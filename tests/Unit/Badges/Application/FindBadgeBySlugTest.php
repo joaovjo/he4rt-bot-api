@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Badges\Application;
 
 use Heart\Badges\Application\FindBadgeBySlug;
@@ -10,7 +12,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Badges\BadgeProviderTrait;
 
-class FindBadgeBySlugTest extends TestCase
+final class FindBadgeBySlugTest extends TestCase
 {
     use BadgeProviderTrait;
 
@@ -18,20 +20,20 @@ class FindBadgeBySlugTest extends TestCase
 
     private BadgeEntity $badgeEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->badgeRepositoryStub = m::mock(BadgeRepository::class);
         $this->badgeEntity = $this->validBadgeEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testFindBadgeBySlug(): void
+    public function test_find_badge_by_slug(): void
     {
         $slug = 'é-o-canhas';
         $this->badgeRepositoryStub

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Domain\Enums;
 
 enum ReviewTypeEnum: string

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Application;
 
 use Heart\Meeting\Domain\Actions\PersistAttendMeeting;
@@ -7,12 +9,11 @@ use Heart\Meeting\Domain\Exceptions\MeetingException;
 use Heart\Shared\Application\TTL;
 use Illuminate\Support\Facades\Cache;
 
-class AttendMeeting
+final readonly class AttendMeeting
 {
     public function __construct(
-        private readonly PersistAttendMeeting $persistAttendMeeting
-    ) {
-    }
+        private PersistAttendMeeting $persistAttendMeeting
+    ) {}
 
     public function handle(string $userId): void
     {
@@ -25,9 +26,7 @@ class AttendMeeting
 
     public function getMeetingId(): string
     {
-        if (! Cache::tags(['meetings'])->has('current-meeting')) {
-            throw MeetingException::nonexistentMeeting();
-        }
+        throw_unless(Cache::tags(['meetings'])->has('current-meeting'), MeetingException::nonexistentMeeting());
 
         return Cache::tags(['meetings'])->get('current-meeting');
     }

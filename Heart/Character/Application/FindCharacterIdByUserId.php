@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Application;
 
 use Heart\Character\Domain\Actions\GetCharacterByUserId;
 use Heart\Shared\Application\TTL;
 use Illuminate\Support\Facades\Cache;
 
-class FindCharacterIdByUserId
+final readonly class FindCharacterIdByUserId
 {
     public function __construct(
-        protected readonly GetCharacterByUserId $finder
-    ) {
-    }
+        private GetCharacterByUserId $finder
+    ) {}
 
     public function handle(string $userId): string
     {

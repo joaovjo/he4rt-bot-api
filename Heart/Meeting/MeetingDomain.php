@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting;
 
 use Heart\Core\Contracts\DomainInterface;
 use Heart\Meeting\Infrastructure\Providers\MeetingRouteProvider;
 use Heart\Meeting\Infrastructure\Providers\MeetingServiceProvider;
 
-class MeetingDomain extends DomainInterface
+final class MeetingDomain extends DomainInterface
 {
     public function registerProvider(): array
     {

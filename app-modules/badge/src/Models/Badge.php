@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Models;
 
 use He4rt\Badge\Database\Factories\BadgeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Badge extends Model
+final class Badge extends Model
 {
     use HasFactory;
 

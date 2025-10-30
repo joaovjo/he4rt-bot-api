@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Feedback;
 
 use Heart\Feedback\Infrastructure\Models\Feedback;
@@ -7,11 +9,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class GetFeedbackByIdTest extends TestCase
+final class GetFeedbackByIdTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testCanFindById(): void
+    public function test_can_find_by_id(): void
     {
         $feedback = Feedback::factory()->create();
 

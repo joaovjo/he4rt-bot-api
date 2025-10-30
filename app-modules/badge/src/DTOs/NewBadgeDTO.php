@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\DTOs;
 
-class NewBadgeDTO implements \JsonSerializable
+use JsonSerializable;
+
+final readonly class NewBadgeDTO implements JsonSerializable
 {
     public function __construct(
-        private readonly string $provider,
-        private readonly string $name,
-        private readonly string $description,
-        private readonly string $imageUrl,
-        private readonly string $redeemCode,
-        private readonly bool $active,
-    ) {
-    }
+        private string $provider,
+        private string $name,
+        private string $description,
+        private string $imageUrl,
+        private string $redeemCode,
+        private bool $active,
+    ) {}
 
     public static function make(array $payload): self
     {

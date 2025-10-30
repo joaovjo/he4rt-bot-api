@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Core\Providers;
 
 use Heart\Core\Classes\DomainManager;
 use Illuminate\Support\ServiceProvider;
 
-class CoreProvider extends ServiceProvider
+final class CoreProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $providers = DomainManager::instance()->getproviders();
         foreach ($providers as $provider) {

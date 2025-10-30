@@ -1,20 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Core\Contracts;
 
 abstract class DomainInterface
 {
-    private bool $disabled;
-
-    public function __construct($disabled = false)
+    public function __construct(private readonly bool $disabled = false)
     {
-        $this->disabled = $disabled;
-    }
-
-    public function isDisabled(): bool
-    {
-        return $this->disabled;
     }
 
     abstract public function registerProvider(): array;
+
+    final public function isDisabled(): bool
+    {
+        return $this->disabled;
+    }
 }

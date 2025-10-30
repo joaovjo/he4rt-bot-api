@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Shared\Domain\ValueObjects;
 
-class IntValueObject
+final readonly class IntValueObject
 {
-    public function __construct(protected int $value)
-    {
-    }
+    public function __construct(private int $value) {}
 
     public function value(): int
     {

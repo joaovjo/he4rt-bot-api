@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Repositories;
 
 use He4rt\Message\DTOs\NewMessageDTO;
@@ -7,11 +9,11 @@ use He4rt\Message\Entities\MessageEntity;
 use He4rt\Message\Models\Message;
 use Illuminate\Database\Eloquent\Builder;
 
-class MessageEloquentRepository implements MessageRepository
+final readonly class MessageEloquentRepository implements MessageRepository
 {
-    private readonly Builder $query;
+    private Builder $query;
 
-    public function __construct(private readonly Message $model)
+    public function __construct(private Message $model)
     {
         $this->query = $this->model->newQuery();
     }

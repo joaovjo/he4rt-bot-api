@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Database\Factories;
 
 use He4rt\Badge\Models\Badge;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BadgeFactory extends Factory
+final class BadgeFactory extends Factory
 {
     protected $model = Badge::class;
 

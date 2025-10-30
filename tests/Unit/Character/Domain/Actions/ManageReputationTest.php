@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character\Domain\Actions;
 
 use Heart\Character\Domain\Actions\ManageReputation;
@@ -10,7 +12,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Character\CharacterProviderTrait;
 
-class ManageReputationTest extends TestCase
+final class ManageReputationTest extends TestCase
 {
     use CharacterProviderTrait;
 
@@ -20,20 +22,20 @@ class ManageReputationTest extends TestCase
 
     private PersistDailyBonus $claimDailyBonus;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->characterRepository = m::mock(CharacterRepository::class);
         $this->manageReputation = new ManageReputation($this->characterRepository);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testAddReputation()
+    public function test_add_reputation(): void
     {
         $character = $this->validCharacterEntity();
         $characterId = 'porra-careca';

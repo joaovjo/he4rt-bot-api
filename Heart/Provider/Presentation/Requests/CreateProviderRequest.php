@@ -1,19 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Presentation\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateProviderRequest extends FormRequest
+final class CreateProviderRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return true;
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge(['provider' => $this->route('provider')]);
     }
 
     public function rules(): array
@@ -21,7 +18,12 @@ class CreateProviderRequest extends FormRequest
         return [
             'provider' => ['required', 'in:discord,twitch'],
             'provider_id' => ['required'],
-            'username' => ['required']
+            'username' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge(['provider' => $this->route('provider')]);
     }
 }

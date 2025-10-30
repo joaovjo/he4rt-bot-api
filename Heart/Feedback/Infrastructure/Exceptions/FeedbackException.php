@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Infrastructure\Exceptions;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class FeedbackException extends Exception
+final class FeedbackException extends Exception
 {
     public static function idNotFound(int $id): self
     {

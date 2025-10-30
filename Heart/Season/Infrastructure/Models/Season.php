@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Season\Infrastructure\Models;
 
 use Heart\Badges\Infrastructure\Model\Badge;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Season extends Model
+final class Season extends Model
 {
     use HasFactory;
     use HasUuids;
@@ -39,8 +41,8 @@ class Season extends Model
         return $this->hasMany(Meeting::class);
     }
 
-     protected static function newFactory(): SeasonFactory
-     {
-         return SeasonFactory::new();
-     }
+    protected static function newFactory(): SeasonFactory
+    {
+        return SeasonFactory::new();
+    }
 }

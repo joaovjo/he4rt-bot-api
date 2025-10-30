@@ -1,10 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Shared\Domain\ValueObjects;
 
-class StringValueObject
+final readonly class StringValueObject
 {
-    public function __construct(protected readonly string $value)
-    {
-    }
 }

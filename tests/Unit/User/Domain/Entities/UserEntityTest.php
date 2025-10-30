@@ -1,22 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\User\Domain\Entities;
 
 use Heart\User\Domain\Entities\UserEntity;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
-class UserEntityTest extends TestCase
+final class UserEntityTest extends TestCase
 {
-
-    #[DataProvider('validUserPayloads')]
-    public function testCanCreateEntity(array $userPayload)
-    {
-        $user = UserEntity::fromArray($userPayload);
-
-        $this->assertInstanceOf(UserEntity::class, $user);
-    }
-
     public static function validUserPayloads(): array
     {
         return [
@@ -33,5 +26,13 @@ class UserEntityTest extends TestCase
                 'is_donator' => false,
             ]],
         ];
+    }
+
+    #[DataProvider('validUserPayloads')]
+    public function test_can_create_entity(array $userPayload): void
+    {
+        $user = UserEntity::fromArray($userPayload);
+
+        $this->assertInstanceOf(UserEntity::class, $user);
     }
 }

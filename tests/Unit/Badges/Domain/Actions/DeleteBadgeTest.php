@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Badges\Domain\Actions;
 
 use Heart\Badges\Domain\Actions\DeleteBadge;
@@ -10,7 +12,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Badges\BadgeProviderTrait;
 
-class DeleteBadgeTest extends TestCase
+final class DeleteBadgeTest extends TestCase
 {
     use BadgeProviderTrait;
 
@@ -18,20 +20,20 @@ class DeleteBadgeTest extends TestCase
 
     private BadgeEntity $badgeEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->badgeRepositoryStub = m::mock(BadgeRepository::class);
         $this->badgeEntity = $this->validBadgeEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testDeleteBadgeSuccess(): void
+    public function test_delete_badge_success(): void
     {
         $this->badgeRepositoryStub
             ->shouldReceive('delete')

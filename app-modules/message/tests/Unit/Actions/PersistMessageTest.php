@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Date;
+declare(strict_types=1);
+
 use He4rt\Message\Actions\PersistMessage;
 use He4rt\Message\DTOs\NewMessageDTO;
 use He4rt\Message\Entities\MessageEntity;
 use He4rt\Message\Repositories\MessageRepository;
-use Mockery as m;
-
 use Heart\Provider\Domain\Enums\ProviderEnum;
-
+use Illuminate\Support\Facades\Date;
+use Mockery as m;
 
 beforeEach(function (): void {
     $this->messageRepositoryStub = m::mock(MessageRepository::class);
@@ -19,7 +19,7 @@ beforeEach(function (): void {
         $this->messageEntity->providerMessageId,
         $this->messageEntity->channelId,
         $this->messageEntity->content,
-        Date::parse('2023-01-24') //sentAt in string
+        Date::parse('2023-01-24') // sentAt in string
     );
 });
 
@@ -39,7 +39,6 @@ test('persist message success', function (): void {
     $test->handle($this->messageDTO, $this->messageEntity->obtainedExperience, 'canhassi');
 });
 
-
 function validMessagePayload(array $fields = []): array
 {
     return [
@@ -49,7 +48,7 @@ function validMessagePayload(array $fields = []): array
         'season_id' => 12,
         'channel_id' => 'canal-foda',
         'content' => 'conteudo-foda',
-        'sent_at' => new \DateTime(Date::now()->toString()),
+        'sent_at' => new DateTimeImmutable(Date::now()->toString()),
         'obtained_experience' => 12,
         ...$fields,
     ];

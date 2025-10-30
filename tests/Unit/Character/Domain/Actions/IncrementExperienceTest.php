@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character\Domain\Actions;
 
 use Heart\Character\Domain\Actions\FindCharacter;
@@ -11,7 +13,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Character\CharacterProviderTrait;
 
-class IncrementExperienceTest extends TestCase
+final class IncrementExperienceTest extends TestCase
 {
     use CharacterProviderTrait;
 
@@ -21,7 +23,7 @@ class IncrementExperienceTest extends TestCase
 
     private MockInterface $findCharacterStub;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->characterRepositoryStub = m::mock(CharacterRepository::class);
@@ -29,13 +31,13 @@ class IncrementExperienceTest extends TestCase
         $this->characterEntity = $this->validCharacterEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testIncrementExperienceSuccess(): void
+    public function test_increment_experience_success(): void
     {
         $this->characterRepositoryStub
             ->shouldReceive('updateExperience')

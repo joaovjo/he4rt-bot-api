@@ -1,15 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Core\DTO;
 
-class DomainDTO
+final readonly class DomainDTO
 {
     public function __construct(
-        public readonly string $namespace,
-        public readonly string $filePath,
-        public readonly string $fileName
-    ) {
-    }
+        public string $namespace,
+        public string $filePath,
+        public string $fileName
+    ) {}
 
     public static function make(string $namespace, array $domainPayload): self
     {

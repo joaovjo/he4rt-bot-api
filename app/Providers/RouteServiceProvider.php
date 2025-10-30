@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
@@ -8,16 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
-class RouteServiceProvider extends ServiceProvider
+final class RouteServiceProvider extends ServiceProvider
 {
     /**
      * The path to the "home" route for your application.
      *
      * Typically, users are redirected here after authentication.
-     *
-     * @var string
      */
-    public const HOME = '/home';
+    public const string HOME = '/home';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -38,11 +38,9 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Configure the rate limiters for the application.
-     *
-     * @return void
      */
-    protected function configureRateLimiting()
+    private function configureRateLimiting(): void
     {
-        RateLimiter::for('api', fn(Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
+        RateLimiter::for('api', fn (Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
     }
 }

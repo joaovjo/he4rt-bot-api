@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Domain\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 
-class MeetingException extends Exception
+final class MeetingException extends Exception
 {
     public static function nonexistentMeeting(): self
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Infrastructure\Models;
 
 use Heart\User\Infrastructure\Factories\InformationFactory;
@@ -8,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Information extends Model
+final class Information extends Model
 {
     use HasFactory;
     use HasUuids;

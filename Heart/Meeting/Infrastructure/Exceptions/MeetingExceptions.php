@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Infrastructure\Exceptions;
 
+use Exception;
 use Symfony\Component\HttpFoundation\Response;
 
-class MeetingExceptions extends \Exception
+final class MeetingExceptions extends Exception
 {
     public static function meetingTypeNotFound(): self
     {

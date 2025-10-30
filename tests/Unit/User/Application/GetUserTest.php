@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\User\Application;
 
 use Heart\User\Application\GetUser;
@@ -10,7 +12,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\User\UserProviderTrait;
 
-class GetUserTest extends TestCase
+final class GetUserTest extends TestCase
 {
     use UserProviderTrait;
 
@@ -18,20 +20,20 @@ class GetUserTest extends TestCase
 
     private UserEntity $userEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->repositoryStub = m::mock(UserRepository::class);
         $this->userEntity = $this->validUserEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testGetUser(): void
+    public function test_get_user(): void
     {
         $this->repositoryStub
             ->shouldReceive('find')
