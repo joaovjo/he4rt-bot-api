@@ -15,14 +15,14 @@ final class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => $this->faker->uuid(),
+            'id' => fake()->uuid(),
             'provider_id' => Provider::factory(),
-            'provider_message_id' => $this->faker->randomNumber(4),
+            'provider_message_id' => fake()->randomNumber(4),
             'season_id' => 2,
-            'channel_id' => $this->faker->randomNumber(4),
-            'content' => $this->faker->sentence(),
+            'channel_id' => fake()->randomNumber(4),
+            'content' => fake()->sentence(),
             'sent_at' => now(),
-            'obtained_experience' => $this->faker->randomNumber(2),
+            'obtained_experience' => fake()->randomNumber(2),
         ];
     }
 }

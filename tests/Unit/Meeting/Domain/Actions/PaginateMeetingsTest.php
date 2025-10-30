@@ -7,7 +7,6 @@ namespace Tests\Unit\Meeting\Domain\Actions;
 use Heart\Meeting\Domain\Actions\PaginateMeetings;
 use Heart\Meeting\Domain\Entities\MeetingEntity;
 use Heart\Meeting\Domain\Repositories\MeetingRepository;
-use Heart\Provider\Domain\Enums\ProviderEnum;
 use Heart\Shared\Domain\Paginator;
 use Mockery as m;
 use Mockery\MockInterface;
@@ -47,6 +46,6 @@ final class PaginateMeetingsTest extends TestCase
 
         $test = new PaginateMeetings($this->meetingRepositoryStub);
 
-        $test->handle(ProviderEnum::Discord);
+        $test->handle();
     }
 }

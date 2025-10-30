@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Heart\Character\Infrastructure\Factories;
 
-use Illuminate\Database\Eloquent\Model;
 use Heart\Character\Infrastructure\Models\Character;
 use Heart\Character\Infrastructure\Models\Wallet;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @extends Factory<Model>
@@ -25,7 +25,7 @@ final class WalletFactory extends Factory
     {
         return [
             'character_id' => Character::factory(),
-            'balance' => $this->faker->randomNumber(1, 99999),
+            'balance' => fake()->randomNumber(1, 99999),
         ];
     }
 }

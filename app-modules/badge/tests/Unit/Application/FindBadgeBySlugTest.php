@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-use Heart\Badges\Application\FindBadgeBySlug;
-use Heart\Badges\Domain\Repositories\BadgeRepository;
-use Unit\BadgeProviderTrait;
+use He4rt\Badge\Actions\FindBadgeBySlug;
+use He4rt\Badge\Contracts\BadgeRepository;
+use He4rt\Badge\Tests\Unit\BadgeProviderTrait;
+use Mockery as m;
 
 uses(BadgeProviderTrait::class);
 

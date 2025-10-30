@@ -15,10 +15,10 @@ final class BadgeFactory extends Factory
     {
         return [
             'provider' => 'default',
-            'name' => $this->faker->name(),
-            'description' => $this->faker->sentence(),
-            'image_url' => $this->faker->imageUrl(),
-            'redeem_code' => $this->faker->slug(2),
+            'name' => fake()->name(),
+            'description' => fake()->sentence(),
+            'image_url' => fake()->imageUrl(),
+            'redeem_code' => fake()->slug(2),
             'active' => true,
         ];
     }

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Heart\User\Application;
 
-use Heart\User\Domain\Entities\UserEntity;
 use Heart\Provider\Domain\Entities\ProviderEntity;
 use Heart\Provider\Domain\Repositories\ProviderRepository;
 use Heart\User\Application\Exceptions\ProfileException;
 use Heart\User\Domain\Actions\GetProfile;
 use Heart\User\Domain\Entities\ProfileEntity;
+use Heart\User\Domain\Entities\UserEntity;
 use Heart\User\Domain\Repositories\UserRepository;
 
 final readonly class FindProfile

@@ -27,16 +27,16 @@ final class MeetingType extends Model
         'start_at',
     ];
 
+    protected static function newFactory(): MeetingTypeFactory
+    {
+        return MeetingTypeFactory::new();
+    }
+
     protected function startAt(): Attribute
     {
         return Attribute::make(
             get: fn (string $value) => $this->generateStartAt($value),
         );
-    }
-
-    protected static function newFactory(): MeetingTypeFactory
-    {
-        return MeetingTypeFactory::new();
     }
 
     private function generateStartAt(string $value): string

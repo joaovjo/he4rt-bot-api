@@ -43,21 +43,6 @@ final class Character extends Model
         'level',
     ];
 
-    protected function getRankingAttribute(): int
-    {
-        return $this->newQuery()
-            ->orderByDesc('experience')
-            ->pluck('id')
-            ->filter(fn ($id) => $id === $this->getKey())
-            ->keys()
-            ->first() + 1;
-    }
-
-    protected function getLevelAttribute(): int
-    {
-        return (new LevelEntity($this->experience))->getLevel();
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -86,5 +71,20 @@ final class Character extends Model
     protected static function newFactory(): CharacterFactory
     {
         return CharacterFactory::new();
+    }
+
+    protected function getRankingAttribute(): int
+    {
+        return $this->newQuery()
+            ->orderByDesc('experience')
+            ->pluck('id')
+            ->filter(fn ($id) => $id === $this->getKey())
+            ->keys()
+            ->first() + 1;
+    }
+
+    protected function getLevelAttribute(): int
+    {
+        return (new LevelEntity($this->experience))->getLevel();
     }
 }

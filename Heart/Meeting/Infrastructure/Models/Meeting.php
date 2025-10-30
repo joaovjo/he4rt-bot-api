@@ -33,10 +33,6 @@ final class Meeting extends Model
         'ends_at',
     ];
 
-    protected $casts = [
-        'meeting_type_id' => 'integer',
-    ];
-
     public function isEnded(): bool
     {
         return (bool) $this->attributes['ends_at'];
@@ -60,5 +56,11 @@ final class Meeting extends Model
     protected static function newFactory(): MeetingFactory
     {
         return MeetingFactory::new();
+    }
+    protected function casts(): array
+    {
+        return [
+            'meeting_type_id' => 'integer',
+        ];
     }
 }
