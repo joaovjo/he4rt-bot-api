@@ -86,7 +86,7 @@ final class DomainManager
         }
 
         $it = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($dirPath, FilesystemIterator::FOLLOW_SYMLINKS | \FilesystemIterator::SKIP_DOTS)
+            new RecursiveDirectoryIterator($dirPath, FilesystemIterator::FOLLOW_SYMLINKS | FilesystemIterator::SKIP_DOTS)
         );
         $it->setMaxDepth();
         $it->rewind();

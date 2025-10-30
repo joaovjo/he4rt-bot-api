@@ -13,6 +13,7 @@ test('can create badge', function (): void {
         'redeem_code' => '123',
         'active' => true,
     ];
+
     $this->actingAsAdmin()
         ->postJson(route('badges.store'), $payload)
         ->assertStatus(Response::HTTP_CREATED);

@@ -41,11 +41,6 @@ final class Provider extends Model
         'messages_count',
     ];
 
-    protected function getMessagesCountAttribute(): int
-    {
-        return $this->messages()->count();
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -64,5 +59,10 @@ final class Provider extends Model
     protected static function newFactory(): ProviderFactory
     {
         return ProviderFactory::new();
+    }
+
+    protected function getMessagesCountAttribute(): int
+    {
+        return $this->messages()->count();
     }
 }

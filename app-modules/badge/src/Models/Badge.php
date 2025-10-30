@@ -23,12 +23,15 @@ final class Badge extends Model
         'active',
     ];
 
-    protected $casts = [
-        'active' => 'boolean',
-    ];
-
     protected static function newFactory(): BadgeFactory
     {
         return BadgeFactory::new();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'active' => 'boolean',
+        ];
     }
 }

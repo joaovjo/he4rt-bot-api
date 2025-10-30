@@ -9,6 +9,14 @@ use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
 use Rector\TypeDeclaration\Rector\ArrowFunction\AddArrowFunctionReturnTypeRector;
 use Rector\TypeDeclaration\Rector\StmtsAwareInterface\DeclareStrictTypesRector;
+use RectorLaravel\Rector\Class_\ModelCastsPropertyToCastsMethodRector;
+use RectorLaravel\Rector\Class_\ReplaceExpectsMethodsInTestsRector;
+use RectorLaravel\Rector\Coalesce\ApplyDefaultInsteadOfNullCoalesceRector;
+use RectorLaravel\Rector\Empty_\EmptyToBlankAndFilledFuncRector;
+use RectorLaravel\Rector\FuncCall\ConfigToTypedConfigMethodCallRector;
+use RectorLaravel\Rector\MethodCall\RefactorBlueprintGeometryColumnsRector;
+use RectorLaravel\Rector\PropertyFetch\ReplaceFakerInstanceWithHelperRector;
+use RectorLaravel\Rector\PropertyFetch\ReplaceFakerPropertyFetchWithMethodCallRector;
 use RectorLaravel\Set\LaravelSetList;
 
 return RectorConfig::configure()
@@ -48,12 +56,15 @@ return RectorConfig::configure()
         carbon: true,
         rectorPreset: true
     )
-    ->withSkip([
-        DeclareStrictTypesRector::class,
-        ChangeOrIfContinueToMultiContinueRector::class,
-        PostIncDecToPreIncDecRector::class,
-        AddOverrideAttributeToOverriddenMethodsRector::class,
-        AddArrowFunctionReturnTypeRector::class,
+    ->withRules([
+        ApplyDefaultInsteadOfNullCoalesceRector::class,
+        EmptyToBlankAndFilledFuncRector::class,
+        ModelCastsPropertyToCastsMethodRector::class,
+        RefactorBlueprintGeometryColumnsRector::class,
+        ReplaceExpectsMethodsInTestsRector::class,
+        ReplaceFakerInstanceWithHelperRector::class,
+        ConfigToTypedConfigMethodCallRector::class,
+        ReplaceFakerPropertyFetchWithMethodCallRector::class,
     ])
     ->withSets([
         LaravelSetList::LARAVEL_ARRAYACCESS_TO_METHOD_CALL,
@@ -65,4 +76,11 @@ return RectorConfig::configure()
         LaravelSetList::LARAVEL_FACADE_ALIASES_TO_FULL_NAMES,
         LaravelSetList::LARAVEL_IF_HELPERS,
         LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
+    ])
+    ->withSkip([
+        DeclareStrictTypesRector::class,
+        ChangeOrIfContinueToMultiContinueRector::class,
+        PostIncDecToPreIncDecRector::class,
+        AddOverrideAttributeToOverriddenMethodsRector::class,
+        AddArrowFunctionReturnTypeRector::class,
     ]);

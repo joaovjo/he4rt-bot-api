@@ -9,7 +9,7 @@ use Heart\Character\Domain\Enums\VoiceStatesEnum;
 final class VoiceEntity
 {
     public function __construct(
-        public string $id,
+        public int $id,
         public string $providerId,
         public int $seasonId,
         public string $channelName,

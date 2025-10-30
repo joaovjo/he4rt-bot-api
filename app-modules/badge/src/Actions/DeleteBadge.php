@@ -10,7 +10,7 @@ final readonly class DeleteBadge
 {
     public function __construct(private BadgeRepository $badgeRepository) {}
 
-    public function handle(string $badgeId): void
+    public function handle(int $badgeId): void
     {
         $this->badgeRepository->delete($badgeId);
     }

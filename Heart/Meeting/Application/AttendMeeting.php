@@ -9,10 +9,10 @@ use Heart\Meeting\Domain\Exceptions\MeetingException;
 use Heart\Shared\Application\TTL;
 use Illuminate\Support\Facades\Cache;
 
-final readonly class AttendMeeting
+class AttendMeeting
 {
     public function __construct(
-        private PersistAttendMeeting $persistAttendMeeting
+        private readonly PersistAttendMeeting $persistAttendMeeting
     ) {}
 
     public function handle(string $userId): void

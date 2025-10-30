@@ -23,7 +23,7 @@ final class BadgesController extends Controller
         );
     }
 
-    public function deleteBadge(string $badgeId, DeleteBadge $deleteBadge): Response
+    public function deleteBadge(int $badgeId, DeleteBadge $deleteBadge): Response
     {
         $deleteBadge->handle($badgeId);
 

@@ -23,7 +23,7 @@ final readonly class MessageEloquentRepository implements MessageRepository
         $model = $this->query->create([
             'provider_id' => $providerId,
             'provider_message_id' => $messageDTO->providerMessageId,
-            'season_id' => (int) config('he4rt.season.id'),
+            'season_id' => config()->integer('he4rt.season.id'),
             'channel_id' => $messageDTO->channelId,
             'content' => $messageDTO->content,
             'sent_at' => $messageDTO->sentAt,

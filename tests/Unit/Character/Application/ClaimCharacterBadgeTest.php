@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Character\Application;
 
+use He4rt\Badge\Tests\Unit\BadgeProviderTrait;
 use Heart\Badges\Application\FindBadgeBySlug;
 use Heart\Badges\Domain\Entities\BadgeEntity;
 use Heart\Character\Application\ClaimCharacterBadge;
@@ -14,7 +15,6 @@ use Heart\Provider\Domain\Entities\ProviderEntity;
 use Mockery as m;
 use Mockery\MockInterface;
 use Tests\TestCase;
-use Tests\Unit\Character\BadgeProviderTrait;
 use Tests\Unit\Character\ProviderProviderTrait;
 
 final class ClaimCharacterBadgeTest extends TestCase

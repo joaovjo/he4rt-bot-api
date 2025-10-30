@@ -8,10 +8,10 @@ use Heart\Character\Domain\Actions\GetCharacterByUserId;
 use Heart\Shared\Application\TTL;
 use Illuminate\Support\Facades\Cache;
 
-final readonly class FindCharacterIdByUserId
+class FindCharacterIdByUserId
 {
     public function __construct(
-        private GetCharacterByUserId $finder
+        private readonly GetCharacterByUserId $finder
     ) {}
 
     public function handle(string $userId): string

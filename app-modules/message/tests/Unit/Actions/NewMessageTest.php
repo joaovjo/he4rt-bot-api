@@ -12,20 +12,28 @@ use Heart\Provider\Application\FindProvider;
 use Heart\Provider\Application\NewAccountByProvider;
 use Heart\Provider\Domain\Entities\ProviderEntity;
 use Illuminate\Support\Facades\Cache;
-use Mockery as m;
 
 test('new message', function (string $provider, array $payload): void {
+    Cache::shouldReceive('tags->has')
+        ->once()
+        ->with('current-meeting')
+        ->andReturn(true);
 
-    $findProviderStub = m::mock(FindProvider::class);
-    $findCharacterStub = m::mock(FindCharacterIdByUserId::class);
-    $characterExperienceStub = m::mock(IncrementExperience::class);
-    $persistMessageStub = m::mock(PersistMessage::class);
-    $attendMeetingStub = m::mock(AttendMeeting::class);
-    $newUserStub = m::mock(NewAccountByProvider::class);
+    Cache::shouldReceive('tags->has')
+        ->once()
+        ->with('meeting-id-user-foda-attended')
+        ->andReturn(false);
+
+    $findProviderStub = Mockery::mock(FindProvider::class);
+    $findCharacterStub = Mockery::mock(FindCharacterIdByUserId::class);
+    $characterExperienceStub = Mockery::mock(IncrementExperience::class);
+    $persistMessageStub = Mockery::mock(PersistMessage::class);
+    $attendMeetingStub = Mockery::mock(AttendMeeting::class);
+    $newUserStub = Mockery::mock(NewAccountByProvider::class);
 
     $obtainedExperience = 1;
     $providerEntityMock = new ProviderEntity(
-        1,
+        '1',
         'id-user-foda',
         'twitch',
         '12312312',
@@ -52,7 +60,7 @@ test('new message', function (string $provider, array $payload): void {
     $persistMessageStub
         ->shouldReceive('handle')
         ->once()
-        ->with(m::type(NewMessageDTO::class), $obtainedExperience, $providerEntityMock->id);
+        ->with(Mockery::type(NewMessageDTO::class), $obtainedExperience, $providerEntityMock->id);
 
     $attendMeetingStub
         ->shouldReceive('handle')
@@ -69,7 +77,6 @@ test('new message', function (string $provider, array $payload): void {
     );
 
     $action->persist($payload);
-    Cache::flush();
 })->with('dataProvider');
 
 dataset('dataProvider', fn () => [

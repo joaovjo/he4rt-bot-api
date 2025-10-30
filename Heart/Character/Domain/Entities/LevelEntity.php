@@ -40,19 +40,19 @@ final class LevelEntity
         $memberStatusMultiplier = $isSupporter ? 0.25 : 0.4;
         $messagePound = ($messageLength / $averageMessageLength);
 
-        $experienceObtained = ($messagePound / ($this->checkLevelEntity($this->level) * $memberStatusMultiplier) * 20);
+        $experienceObtained = (int) ($messagePound / ($this->checkLevelEntity($this->level) * $memberStatusMultiplier) * 20);
         $this->addExperience($experienceObtained);
 
-        return (int) $experienceObtained;
+        return $experienceObtained;
     }
 
     public function generateVoiceExperience(VoiceStatesEnum $states, bool $isSupporter = false): int
     {
         $memberStatusMultiplier = $isSupporter ? 0.25 : 0.4;
-        $experienceObtained = ($states->getExperienceMultiplier() / ($this->level * $memberStatusMultiplier) * 20);
+        $experienceObtained = (int) ($states->getExperienceMultiplier() / ($this->level * $memberStatusMultiplier) * 20);
         $this->addExperience($experienceObtained);
 
-        return (int) $experienceObtained;
+        return $experienceObtained;
     }
 
     public function getExperience(): int

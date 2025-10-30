@@ -8,12 +8,8 @@
     "autoload": {
         "psr-4": {
             "He4rt\\Message\\": "src/",
+            "He4rt\\Message\\Tests\\": "tests/",
             "He4rt\\Message\\Database\\Factories\\": "database/factories/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "He4rt\\Message\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",

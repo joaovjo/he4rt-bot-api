@@ -9,9 +9,7 @@ use Heart\Feedback\Domain\Repositories\FeedbackRepository;
 
 final readonly class GetFeedbackById
 {
-    public function __construct(private FeedbackRepository $repository)
-    {
-    }
+    public function __construct(private FeedbackRepository $repository) {}
 
     public function handle(string $id): FeedbackEntity
     {

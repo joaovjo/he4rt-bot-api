@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Badges\Application;
 
-use Heart\Badges\Application\CreateBadge;
-use Heart\Badges\Domain\Actions\PersistBadge;
-use Heart\Badges\Domain\DTOs\NewBadgeDTO;
-use Heart\Badges\Domain\Entities\BadgeEntity;
+use He4rt\Badge\Actions\CreateBadge;
+use He4rt\Badge\Actions\PersistBadge;
+use He4rt\Badge\DTOs\NewBadgeDTO;
+use He4rt\Badge\Entities\BadgeEntity;
+use He4rt\Badge\Tests\Unit\BadgeProviderTrait;
 use Mockery as m;
 use Mockery\MockInterface;
 use Tests\TestCase;
-use Tests\Unit\Badges\BadgeProviderTrait;
 
 final class CreateBadgeTest extends TestCase
 {

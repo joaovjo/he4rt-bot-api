@@ -13,11 +13,6 @@ final class MeetingRequest extends FormRequest
         return true;
     }
 
-    protected function prepareForValidation(): void
-    {
-        $this->merge(['provider' => $this->route('provider')]);
-    }
-
     public function rules(): array
     {
         return [
@@ -25,5 +20,10 @@ final class MeetingRequest extends FormRequest
             'provider_id' => ['required'],
             'provider' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge(['provider' => $this->route('provider')]);
     }
 }

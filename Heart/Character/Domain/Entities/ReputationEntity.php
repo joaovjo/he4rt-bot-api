@@ -6,9 +6,7 @@ namespace Heart\Character\Domain\Entities;
 
 final class ReputationEntity
 {
-    public function __construct(private int $points)
-    {
-    }
+    public function __construct(private int $points) {}
 
     public function handleReputation(string $type): void
     {

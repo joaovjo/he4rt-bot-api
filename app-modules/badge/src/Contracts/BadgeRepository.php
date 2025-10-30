@@ -13,5 +13,5 @@ interface BadgeRepository
 
     public function findBySlug(string $badgeSlug): BadgeEntity;
 
-    public function delete(string $badgeId): void;
+    public function delete(int $badgeId): void;
 }

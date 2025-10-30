@@ -6,9 +6,7 @@ namespace Heart\Core\Contracts;
 
 abstract class DomainInterface
 {
-    public function __construct(private readonly bool $disabled = false)
-    {
-    }
+    public function __construct(private readonly bool $disabled = false) {}
 
     abstract public function registerProvider(): array;
 
