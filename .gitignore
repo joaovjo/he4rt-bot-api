@@ -18,3 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 /.idea/
+/.phpunit.cache
+/.kiro
+/.junie
+/.rector.cache
