@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Tests\Unit;
 
 use He4rt\Badge\Entities\BadgeEntity;

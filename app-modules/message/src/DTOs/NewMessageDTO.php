@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\DTOs;
 
+use DateTimeImmutable;
 use Heart\Provider\Domain\Enums\ProviderEnum;
 
-class NewMessageDTO
+final class NewMessageDTO
 {
     public function __construct(
         public ProviderEnum $provider,
@@ -12,9 +15,8 @@ class NewMessageDTO
         public string $providerMessageId,
         public string $channelId,
         public string $content,
-        public \DateTime $sentAt,
-    ) {
-    }
+        public DateTimeImmutable $sentAt,
+    ) {}
 
     public static function make(array $payload): self
     {
@@ -24,7 +26,7 @@ class NewMessageDTO
             providerMessageId: $payload['provider_message_id'],
             channelId: $payload['channel_id'],
             content: $payload['content'],
-            sentAt: new \DateTime($payload['sent_at'])
+            sentAt: new DateTimeImmutable($payload['sent_at'])
         );
     }
 }

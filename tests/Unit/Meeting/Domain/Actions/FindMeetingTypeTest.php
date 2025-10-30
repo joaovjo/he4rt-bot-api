@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Meeting\Domain\Actions;
 
 use Heart\Meeting\Domain\Actions\FindMeetingType;
@@ -11,27 +13,29 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Meeting\MeetingTypeProviderTrait;
 
-class FindMeetingTypeTest extends TestCase
+final class FindMeetingTypeTest extends TestCase
 {
     use MeetingTypeProviderTrait;
+    public $meetingEntity;
+
     private MockInterface $meetingTypeRepositoryStub;
 
     private MeetingTypeEntity $meetingTypeEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->meetingTypeRepositoryStub = m::mock(MeetingTypeRepository::class);
         $this->meetingEntity = $this->validMeetingTypeEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testMeetingTypeIsNotFound(): void
+    public function test_meeting_type_is_not_found(): void
     {
         $this->expectException(MeetingException::class);
 
@@ -49,7 +53,7 @@ class FindMeetingTypeTest extends TestCase
     /**
      * @throws MeetingException
      */
-    public function testFindMeetingTypeSuccess(): void
+    public function test_find_meeting_type_success(): void
     {
         $this->meetingTypeRepositoryStub
             ->shouldReceive('findById')

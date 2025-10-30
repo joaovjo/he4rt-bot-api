@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Infrastructure\Factories;
 
 use Heart\Provider\Infrastructure\Models\Provider;
 use Heart\User\Infrastructure\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProviderFactory extends Factory
+final class ProviderFactory extends Factory
 {
     protected $model = Provider::class;
 

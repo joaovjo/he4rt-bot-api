@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Domain\Actions;
 
 use Heart\Meeting\Domain\Entities\MeetingEntity;
 use Heart\Meeting\Domain\Repositories\MeetingRepository;
 
-class FinishMeeting
+final readonly class FinishMeeting
 {
-    public function __construct(private readonly MeetingRepository $meetingRepository)
-    {
-    }
+    public function __construct(private MeetingRepository $meetingRepository) {}
 
     public function handle(string $meetingId): MeetingEntity
     {

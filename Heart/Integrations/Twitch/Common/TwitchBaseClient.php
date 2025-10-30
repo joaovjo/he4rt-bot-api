@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Integrations\Twitch\Common;
 
 use GuzzleHttp\Client;
@@ -8,11 +10,9 @@ use Heart\Integrations\Twitch\OAuth\Infrastructure\TwitchOAuthClient;
 use Heart\Integrations\Twitch\Subscriber\Domain\TwitchSubscribersService;
 use Heart\Integrations\Twitch\Subscriber\Infrastructure\TwitchSubscribersClient;
 
-final class TwitchBaseClient implements TwitchService
+final readonly class TwitchBaseClient implements TwitchService
 {
-    public function __construct(private readonly Client $client)
-    {
-    }
+    public function __construct(private Client $client) {}
 
     public function oauth(): TwitchOAuthService
     {

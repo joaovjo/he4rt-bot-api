@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Feedback;
 
 use Heart\Provider\Infrastructure\Models\Provider;
@@ -7,11 +9,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class CreateFeedbackTest extends TestCase
+final class CreateFeedbackTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testCanCreate(): void
+    public function test_can_create(): void
     {
         $providerSender = Provider::factory()->create(['provider' => 'discord']);
         $providerTarget = Provider::factory()->create(['provider' => 'discord']);

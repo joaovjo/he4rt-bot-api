@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Integrations\Twitch\OAuth\Domain\DTO;
 
 use Heart\Authentication\OAuth\Domain\DTO\OAuthAccessDTO;
 
-class TwitchOAuthAccessDTO extends OAuthAccessDTO
+final class TwitchOAuthAccessDTO extends OAuthAccessDTO
 {
     public static function make(array $payload): self
     {

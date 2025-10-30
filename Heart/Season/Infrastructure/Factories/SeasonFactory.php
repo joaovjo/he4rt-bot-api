@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Season\Infrastructure\Factories;
 
 use Heart\Season\Infrastructure\Models\Season;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SeasonFactory extends Factory
+final class SeasonFactory extends Factory
 {
     protected $model = Season::class;
 

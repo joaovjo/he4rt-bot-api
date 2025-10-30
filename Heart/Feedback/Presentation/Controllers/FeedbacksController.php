@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Presentation\Controllers;
 
 use Heart\Feedback\Application\ReviewFeedback;
@@ -10,7 +12,7 @@ use Heart\Feedback\Presentation\Requests\FeedbackReviewRequest;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class FeedbacksController
+final class FeedbacksController
 {
     public function getFeedback(
         string $feedbackId,

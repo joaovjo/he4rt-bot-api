@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Infrastructure\Models;
 
 use Heart\Meeting\Infrastructure\Factories\MeetingFactory;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Meeting extends Model
+final class Meeting extends Model
 {
     use HasFactory;
     use HasUuids;
@@ -26,7 +28,7 @@ class Meeting extends Model
         'ends_at',
     ];
 
-    protected $dates = [
+    private array $dates = [
         'starts_at',
         'ends_at',
     ];

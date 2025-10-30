@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Message;
 
 use Heart\Character\Domain\Enums\VoiceStatesEnum;
@@ -9,11 +11,11 @@ use Heart\User\Infrastructure\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class NewVoiceMessageTest extends TestCase
+final class NewVoiceMessageTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testCanCreateVoiceMessage()
+    public function test_can_create_voice_message(): void
     {
         config(['he4rt.season.id' => 2]);
 
@@ -27,7 +29,7 @@ class NewVoiceMessageTest extends TestCase
             'provider' => $provider->provider,
             'provider_id' => $provider->provider_id,
             'state' => VoiceStatesEnum::Muted->value,
-            'channel_name' => 'Estudando'
+            'channel_name' => 'Estudando',
         ];
 
         $this->actingAsAdmin()
@@ -42,7 +44,7 @@ class NewVoiceMessageTest extends TestCase
         $this->assertDatabaseHas('voice_messages', [
             'state' => $payload['state'],
             'channel_name' => $payload['channel_name'],
-            'season_id' => 2
+            'season_id' => 2,
         ]);
     }
 }

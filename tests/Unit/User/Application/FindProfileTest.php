@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\User\Application;
 
 use Heart\Provider\Domain\Entities\ProviderEntity;
@@ -17,11 +19,11 @@ use Tests\Unit\Character\ProviderProviderTrait;
 use Tests\Unit\User\ProfileProviderTrait;
 use Tests\Unit\User\UserProviderTrait;
 
-class FindProfileTest extends TestCase
+final class FindProfileTest extends TestCase
 {
-    use UserProviderTrait;
-    use ProviderProviderTrait;
     use ProfileProviderTrait;
+    use ProviderProviderTrait;
+    use UserProviderTrait;
 
     private MockInterface $userRepositoryStub;
 
@@ -35,7 +37,7 @@ class FindProfileTest extends TestCase
 
     private ProfileEntity $profileEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->userRepositoryStub = m::mock(UserRepository::class);
@@ -46,13 +48,13 @@ class FindProfileTest extends TestCase
         $this->profileEntity = $this->validProfileEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testFindProfileWithUsernameSuccess(): void
+    public function test_find_profile_with_username_success(): void
     {
         $this->userRepositoryStub
             ->shouldReceive('findByUsername')
@@ -71,7 +73,7 @@ class FindProfileTest extends TestCase
         $test->handle('canhassi');
     }
 
-    public function testFindProfileWithProviderIdSuccess(): void
+    public function test_find_profile_with_provider_id_success(): void
     {
         $this->userRepositoryStub
             ->shouldReceive('findByUsername')
@@ -95,7 +97,7 @@ class FindProfileTest extends TestCase
         $test->handle('canhassi-id');
     }
 
-    public function testProfileNotFound(): void
+    public function test_profile_not_found(): void
     {
         $this->expectException(ProfileException::class);
 

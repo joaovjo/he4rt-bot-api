@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Core\Exceptions;
 
 use Exception;
 
-class DomainExtendException extends Exception
+final class DomainExtendException extends Exception
 {
     public static function abstractClassNotExtended(): self
     {

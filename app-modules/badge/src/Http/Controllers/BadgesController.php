@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -9,12 +11,8 @@ use He4rt\Badge\Http\Requests\CreateBadgeRequest;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class BadgesController extends Controller
+final class BadgesController extends Controller
 {
-    public function getBadges()
-    {
-    }
-
     public function postBadge(
         CreateBadgeRequest $request,
         CreateBadge $persistBadge

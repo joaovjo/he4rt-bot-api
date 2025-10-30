@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\User\Domain\Application;
 
 use Heart\Shared\Domain\Paginator;
@@ -9,26 +11,26 @@ use Mockery as m;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
-class GetUsersPaginatedTest extends TestCase
+final class GetUsersPaginatedTest extends TestCase
 {
     private MockInterface $repositoryStub;
 
     private MockInterface $paginatorStub;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->repositoryStub = m::mock(UserRepository::class);
         $this->paginatorStub = m::mock(Paginator::class);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testGetUsersPaginated(): void
+    public function test_get_users_paginated(): void
     {
         $this->repositoryStub
             ->shouldReceive('paginated')

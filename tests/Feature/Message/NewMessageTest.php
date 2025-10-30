@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Message;
 
 use Heart\Character\Infrastructure\Models\Character;
@@ -10,11 +12,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
-class NewMessageTest extends TestCase
+final class NewMessageTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testCanCreateAMessage(): void
+    public function test_can_create_a_message(): void
     {
         Cache::tags(['meetings'])->flush();
 
@@ -43,7 +45,7 @@ class NewMessageTest extends TestCase
         ]);
     }
 
-    public function testCanCreateAMessageWithLevelZero(): void
+    public function test_can_create_a_message_with_level_zero(): void
     {
         Cache::tags(['meetings'])->flush();
 
@@ -72,7 +74,7 @@ class NewMessageTest extends TestCase
         ]);
     }
 
-    public function testCanCreateAMessageAndReceiveAMeetingCheck(): void
+    public function test_can_create_a_message_and_receive_a_meeting_check(): void
     {
         Cache::tags(['meetings'])->flush();
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Season\Presentation\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -7,7 +9,7 @@ use Heart\Season\Application\GetCurrentSeason;
 use Heart\Season\Application\GetSeasons;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class SeasonsController extends Controller
+final class SeasonsController extends Controller
 {
     public function getSeasons(GetSeasons $getSeasons): JsonResponse
     {

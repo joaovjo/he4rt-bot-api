@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Domain\ValueObjects;
 
-class ProviderData
+final readonly class ProviderData
 {
     public function __construct(
-        private readonly string $provider,
-        private readonly string $providerId,
-        private readonly ?string $providerEmail
-    ) {
-    }
+        private string $provider,
+        private string $providerId
+    ) {}
 
     public function getProviderId(): string
     {

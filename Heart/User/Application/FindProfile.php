@@ -1,21 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Application;
 
+use Heart\User\Domain\Entities\UserEntity;
+use Heart\Provider\Domain\Entities\ProviderEntity;
 use Heart\Provider\Domain\Repositories\ProviderRepository;
 use Heart\User\Application\Exceptions\ProfileException;
 use Heart\User\Domain\Actions\GetProfile;
 use Heart\User\Domain\Entities\ProfileEntity;
 use Heart\User\Domain\Repositories\UserRepository;
 
-class FindProfile
+final readonly class FindProfile
 {
     public function __construct(
-        private readonly GetProfile $profile,
-        private readonly UserRepository $userRepository,
-        private readonly ProviderRepository $providerRepository,
-    ) {
-    }
+        private GetProfile $profile,
+        private UserRepository $userRepository,
+        private ProviderRepository $providerRepository,
+    ) {}
 
     /**
      * @throws ProfileException
@@ -24,13 +27,13 @@ class FindProfile
     {
         $userEntity = $this->userRepository->findByUsername($value);
 
-        if ($userEntity) {
+        if ($userEntity instanceof UserEntity) {
             return $this->profile->handle($userEntity->id);
         }
 
         $providerEntity = $this->providerRepository->findByProviderId($value);
 
-        if ($providerEntity) {
+        if ($providerEntity instanceof ProviderEntity) {
             return $this->profile->handle($providerEntity->userId);
         }
 

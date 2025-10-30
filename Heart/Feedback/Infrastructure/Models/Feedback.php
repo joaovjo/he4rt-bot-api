@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Infrastructure\Models;
 
 use Heart\Feedback\Infrastructure\Factories\FeedbackFactory;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Feedback extends Model
+final class Feedback extends Model
 {
     use HasFactory;
     use HasUuids;

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Shared\Infrastructure;
 
 use Heart\Shared\Domain\Paginator as PaginatorInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator as LengthAwarePaginatorContract;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class Paginator extends LengthAwarePaginator implements PaginatorInterface
+final class Paginator extends LengthAwarePaginator implements PaginatorInterface
 {
     public static function paginate(LengthAwarePaginatorContract $lengthAwarePaginator): self
     {

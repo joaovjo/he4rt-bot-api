@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Models;
 
 use He4rt\Message\Database\Factories\MessageFactory;
@@ -7,7 +9,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+final class Message extends Model
 {
     use HasFactory;
     use HasUuids;

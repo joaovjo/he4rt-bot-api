@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Actions;
 
 use Heart\Character\Domain\Repositories\CharacterRepository;
 
-class PersistClaimedBadge
+final readonly class PersistClaimedBadge
 {
-    public function __construct(private readonly CharacterRepository $characterRepository)
-    {
-    }
+    public function __construct(private CharacterRepository $characterRepository) {}
 
     public function handle(string $characterId, int $badgeId): void
     {

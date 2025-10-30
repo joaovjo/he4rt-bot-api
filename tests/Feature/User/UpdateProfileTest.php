@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\User;
 
 use Heart\Character\Infrastructure\Models\Character;
@@ -12,9 +14,9 @@ use Heart\User\Infrastructure\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class UpdateProfileTest extends TestCase
+final class UpdateProfileTest extends TestCase
 {
-    public function testSuccess()
+    public function test_success(): void
     {
         $user = User::factory()
             ->has(Character::factory()->has(PastSeason::factory()), 'character')
@@ -31,7 +33,7 @@ class UpdateProfileTest extends TestCase
                 'github_url' => 'https://github.com/danielhe4rt',
                 'birthdate' => '1999-08-03',
                 'about' => 'definitely a developer',
-            ]
+            ],
         ];
 
         $response = $this
@@ -43,7 +45,7 @@ class UpdateProfileTest extends TestCase
         $this->assertDatabaseHas('user_information', $payload['info']);
     }
 
-    public function testSuccessWithOneField()
+    public function test_success_with_one_field(): void
     {
         $user = User::factory()
             ->has(Character::factory()->has(PastSeason::factory()), 'character')
@@ -55,7 +57,7 @@ class UpdateProfileTest extends TestCase
         $payload = [
             'info' => [
                 'github_url' => 'https://github.com/danielhe4rt',
-            ]
+            ],
         ];
         $userExpected = $user->information
             ->only(['nickname', 'linkedin_url']);
@@ -63,7 +65,6 @@ class UpdateProfileTest extends TestCase
         $response = $this
             ->actingAsAdmin()
             ->putJson(route('users.profile.update', ['value' => $user->username]), $payload);
-
 
         $userExpected['github_url'] = $payload['info']['github_url'];
 

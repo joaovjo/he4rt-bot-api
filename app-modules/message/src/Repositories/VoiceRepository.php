@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Repositories;
 
 use He4rt\Message\DTOs\NewVoiceMessageDTO;

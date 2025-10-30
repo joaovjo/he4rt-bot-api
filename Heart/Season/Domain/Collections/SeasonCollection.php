@@ -1,20 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Season\Domain\Collections;
 
 use ArrayIterator;
 use Heart\Season\Domain\Entities\SeasonEntity;
 use JsonSerializable;
 
-class SeasonCollection extends ArrayIterator implements JsonSerializable
+final class SeasonCollection extends ArrayIterator implements JsonSerializable
 {
-    public function add(SeasonEntity $seasonEntity): self
-    {
-        $this->append($seasonEntity);
-
-        return $this;
-    }
-
     public static function make(array $seasonsPayload): self
     {
         $seasons = [];
@@ -23,6 +18,13 @@ class SeasonCollection extends ArrayIterator implements JsonSerializable
         }
 
         return new self($seasons);
+    }
+
+    public function add(SeasonEntity $seasonEntity): self
+    {
+        $this->append($seasonEntity);
+
+        return $this;
     }
 
     public function jsonSerialize(): array

@@ -1,20 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Presentation\Requests;
 
 use Heart\Feedback\Domain\Enums\ReviewTypeEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
-class FeedbackReviewRequest extends FormRequest
+final class FeedbackReviewRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return true;
-    }
-
-    protected function prepareForValidation(): void
-    {
-        $this->merge(['action' => $this->route('action')]);
     }
 
     public function rules(): array
@@ -24,5 +21,10 @@ class FeedbackReviewRequest extends FormRequest
             'staff_id' => ['required'],
             'reason' => ['nullable', 'string', 'max:1000'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge(['action' => $this->route('action')]);
     }
 }

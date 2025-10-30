@@ -1,20 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Domain\DTOs;
 
 use Heart\Feedback\Domain\Enums\ReviewTypeEnum;
 use Heart\Provider\Domain\Entities\ProviderEntity;
 use JsonSerializable;
 
-class FeedbackReviewDTO implements JsonSerializable
+final readonly class FeedbackReviewDTO implements JsonSerializable
 {
     public function __construct(
-        public readonly string $feedbackId,
-        public readonly ReviewTypeEnum $reviewTypeEnum,
-        public readonly ProviderEntity $adminProviderEntity,
-        public readonly ?string $reason,
-    ) {
-    }
+        public string $feedbackId,
+        public ReviewTypeEnum $reviewTypeEnum,
+        public ProviderEntity $adminProviderEntity,
+        public ?string $reason,
+    ) {}
 
     public static function make(
         string $feedbackId,

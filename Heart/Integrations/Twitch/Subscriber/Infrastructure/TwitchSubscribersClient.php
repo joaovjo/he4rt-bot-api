@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Integrations\Twitch\Subscriber\Infrastructure;
 
 use GuzzleHttp\Client;
@@ -7,11 +9,9 @@ use Heart\Authentication\OAuth\Domain\DTO\OAuthAccessDTO;
 use Heart\Integrations\Twitch\Subscriber\Domain\DTO\TwitchSubscriberDTO;
 use Heart\Integrations\Twitch\Subscriber\Domain\TwitchSubscribersService;
 
-class TwitchSubscribersClient implements TwitchSubscribersService
+final readonly class TwitchSubscribersClient implements TwitchSubscribersService
 {
-    public function __construct(private readonly Client $client)
-    {
-    }
+    public function __construct(private Client $client) {}
 
     public function getSubscriptionState(OAuthAccessDTO $dto, string $twitchId, string $channelId): ?TwitchSubscriberDTO
     {
@@ -29,7 +29,7 @@ class TwitchSubscribersClient implements TwitchSubscribersService
 
         $response = json_decode($response->getBody()->getContents(), true)['data'];
 
-        if (count($response) == 0) {
+        if (count($response) === 0) {
             return null;
         }
 

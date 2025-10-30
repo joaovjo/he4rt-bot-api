@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+declare(strict_types=1);
+
 use Heart\Character\Domain\Enums\VoiceStatesEnum;
 use Heart\Character\Infrastructure\Models\Character;
 use Heart\Provider\Infrastructure\Models\Provider;
 use Heart\User\Infrastructure\Models\User;
-
 
 test('can create voice message', function (): void {
     config(['he4rt.season.id' => 2]);
@@ -20,7 +20,7 @@ test('can create voice message', function (): void {
         'provider' => $provider->provider,
         'provider_id' => $provider->provider_id,
         'state' => VoiceStatesEnum::Muted->value,
-        'channel_name' => 'Estudando'
+        'channel_name' => 'Estudando',
     ];
 
     $this->actingAsAdmin()
@@ -35,6 +35,6 @@ test('can create voice message', function (): void {
     $this->assertDatabaseHas('voice_messages', [
         'state' => $payload['state'],
         'channel_name' => $payload['channel_name'],
-        'season_id' => 2
+        'season_id' => 2,
     ]);
 });

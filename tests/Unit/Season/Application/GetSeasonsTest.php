@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Season\Application;
 
 use Heart\Season\Application\GetSeasons;
@@ -11,7 +13,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Season\SeasonProviderTrait;
 
-class GetSeasonsTest extends TestCase
+final class GetSeasonsTest extends TestCase
 {
     use SeasonProviderTrait;
 
@@ -19,20 +21,20 @@ class GetSeasonsTest extends TestCase
 
     private SeasonEntity $seasonEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->seasonRepositoryStub = m::mock(SeasonRepository::class);
         $this->seasonEntity = $this->validSeasonEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testGetSeasonSuccess(): void
+    public function test_get_season_success(): void
     {
         $this->seasonRepositoryStub
             ->shouldReceive('getAll')

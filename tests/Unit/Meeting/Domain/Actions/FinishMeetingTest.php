@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Meeting\Domain\Actions;
 
 use Heart\Meeting\Domain\Actions\FinishMeeting;
@@ -10,26 +12,27 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Meeting\MeetingProviderTrait;
 
-class FinishMeetingTest extends TestCase
+final class FinishMeetingTest extends TestCase
 {
     use MeetingProviderTrait;
     private MockInterface $meetingRepositoryStub;
 
     private MeetingEntity $meetingEntity;
-    public function setUp(): void
+
+    protected function setUp(): void
     {
         parent::setUp();
         $this->meetingRepositoryStub = m::mock(MeetingRepository::class);
         $this->meetingEntity = $this->validMeetingEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testFinishMeeting(): void
+    public function test_finish_meeting(): void
     {
         $this->meetingRepositoryStub
             ->shouldReceive('endMeeting')

@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Application;
 
 use Heart\Character\Domain\Actions\PersistDailyBonus;
 use Heart\Provider\Application\FindProvider;
 
-class ClaimDailyBonus
+final readonly class ClaimDailyBonus
 {
     public function __construct(
-        private readonly PersistDailyBonus $dailyBonus,
-        private readonly FindProvider $findProvider,
-        private readonly FindCharacterIdByUserId $findCharacter,
-    ) {
-    }
+        private PersistDailyBonus $dailyBonus,
+        private FindProvider $findProvider,
+        private FindCharacterIdByUserId $findCharacter,
+    ) {}
 
     public function handle(string $provider, string $providerId): void
     {

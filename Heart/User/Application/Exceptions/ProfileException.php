@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Application\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProfileException extends Exception
+final class ProfileException extends Exception
 {
     public static function notFound(): self
     {

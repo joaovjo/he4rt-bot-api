@@ -1,19 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Domain\DTOs;
 
 use Heart\Provider\Domain\Enums\ProviderEnum;
 use JsonSerializable;
 
-class NewProviderDTO implements JsonSerializable
-
+final readonly class NewProviderDTO implements JsonSerializable
 {
     public function __construct(
-        private readonly ProviderEnum $provider,
-        private readonly string $providerId
-    ) {
-    }
-
+        private ProviderEnum $provider,
+        private string $providerId
+    ) {}
 
     public function jsonSerialize(): array
     {

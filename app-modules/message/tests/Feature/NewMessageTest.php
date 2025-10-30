@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+declare(strict_types=1);
+
 use Heart\Character\Infrastructure\Models\Character;
 use Heart\Meeting\Infrastructure\Models\Meeting;
 use Heart\Provider\Infrastructure\Models\Provider;
 use Heart\User\Infrastructure\Models\User;
 use Illuminate\Support\Facades\Cache;
-
 
 test('can create amessage', function (): void {
     Cache::tags(['meetings'])->flush();

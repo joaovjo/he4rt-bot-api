@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Providers;
 
-use He4rt\Message\Repositories\MessageRepository;
-use He4rt\Message\Repositories\VoiceRepository;
 use He4rt\Message\Repositories\MessageEloquentRepository;
+use He4rt\Message\Repositories\MessageRepository;
 use He4rt\Message\Repositories\VoiceEloquentRepository;
+use He4rt\Message\Repositories\VoiceRepository;
 use Illuminate\Support\ServiceProvider;
 
-class MessageServiceProvider extends ServiceProvider
+final class MessageServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
@@ -20,6 +22,6 @@ class MessageServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Load routes
-        $this->loadRoutesFrom(__DIR__ . '/../../routes/message-routes.php');
+        $this->loadRoutesFrom(__DIR__.'/../../routes/message-routes.php');
     }
 }

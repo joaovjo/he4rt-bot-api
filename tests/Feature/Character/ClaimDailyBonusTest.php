@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Character;
 
 use Heart\Character\Infrastructure\Models\Character;
@@ -9,11 +11,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class ClaimDailyBonusTest extends TestCase
+final class ClaimDailyBonusTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testSuccess()
+    public function test_success(): void
     {
         $user = User::factory()
             ->has(Provider::factory(), 'providers')
@@ -37,7 +39,7 @@ class ClaimDailyBonusTest extends TestCase
         ]);
     }
 
-    public function testShouldNotClaimBefore24Hours(): void
+    public function test_should_not_claim_before24_hours(): void
     {
         $user = User::factory()
             ->has(Provider::factory(), 'providers')

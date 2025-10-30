@@ -1,18 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Actions;
 
-use Heart\Character\Domain\Entities\CharacterEntity;
 use Heart\Character\Domain\Enums\VoiceStatesEnum;
 use Heart\Character\Domain\Repositories\CharacterRepository;
 
-class IncrementExperience
+final readonly class IncrementExperience
 {
     public function __construct(
-        private readonly CharacterRepository $characterRepository,
-        private readonly FindCharacter $findCharacter
-    ) {
-    }
+        private CharacterRepository $characterRepository,
+        private FindCharacter $findCharacter
+    ) {}
 
     public function incrementByTextMessage(string $characterId, string $message): int
     {

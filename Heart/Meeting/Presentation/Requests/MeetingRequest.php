@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Presentation\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MeetingRequest extends FormRequest
+final class MeetingRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return true;
     }
 
-    public function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge(['provider' => $this->route('provider')]);
     }

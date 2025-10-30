@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Season\Application\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 
-class SeasonException extends Exception
+final class SeasonException extends Exception
 {
     public static function noneSeasonFound(): self
     {

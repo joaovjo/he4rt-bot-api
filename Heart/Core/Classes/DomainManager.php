@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Core\Classes;
 
 use FilesystemIterator;
@@ -13,7 +15,7 @@ use Illuminate\Support\Str;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
-class DomainManager
+final class DomainManager
 {
     use Singleton;
 
@@ -23,17 +25,9 @@ class DomainManager
 
     public bool $registered = false;
 
-    protected array $normalizedMap;
+    private array $normalizedMap;
 
-    protected array $pathMap;
-
-    /**
-     * @codeCoverageIgnore
-     */
-    protected function init()
-    {
-        $this->loadDomains();
-    }
+    private array $pathMap;
 
     public function loadDomains(): array
     {
@@ -71,16 +65,14 @@ class DomainManager
     public function normalizeClassName($name): string
     {
         if (is_object($name)) {
-            $name = get_class($name);
+            $name = $name::class;
         }
 
-        return '\\'.ltrim($name, '\\');
+        return '\\'.mb_ltrim($name, '\\');
     }
 
     /**
      * Returns a 2 dimensional array of vendors and their domains.
-     *
-     * @return array
      */
     public function getVendorAndDomainNames(): array
     {
@@ -94,13 +86,13 @@ class DomainManager
         }
 
         $it = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($dirPath, FilesystemIterator::FOLLOW_SYMLINKS)
+            new RecursiveDirectoryIterator($dirPath, FilesystemIterator::FOLLOW_SYMLINKS | \FilesystemIterator::SKIP_DOTS)
         );
         $it->setMaxDepth();
         $it->rewind();
 
         while ($it->valid()) {
-            if ($it->isFile() && str_contains(strtolower($it->getFilename()), 'domain.php')) {
+            if ($it->isFile() && str_contains(mb_strtolower($it->getFilename()), 'domain.php')) {
                 $filePath = dirname($it->getPathname());
                 $vendorPaths = array_reverse(explode('/', $filePath));
                 $domainName = basename($filePath);
@@ -118,32 +110,10 @@ class DomainManager
     }
 
     /**
-     * Returns a path to a subdomain from the core domain
-     *
-     * @param  string  $coreDomain
-     * @param  array  $vendorPaths
-     * @return string
-     */
-    private function getPathFromCoreDomain(string $coreDomain, array $vendorPaths): string
-    {
-        $vendorName = '';
-        $vendorPaths = array_slice($vendorPaths, 1); // Removing domain name
-
-        foreach ($vendorPaths as $vendorPath) {
-            $vendorName = $vendorPath.'\\'.$vendorName;
-            if ($vendorPath === $coreDomain) {
-                break;
-            }
-        }
-
-        return rtrim($vendorName, '\\');
-    }
-
-    /**
      * Loads a single domain into the manager.
      *
-     * @param  string|object  $namespace Eg: Lms\Auth
-     * @param  string  $path Eg: 'LMS/Auth';
+     * @param  string|object  $namespace  Eg: Lms\Auth
+     * @param  string  $path  Eg: 'LMS/Auth';
      * @return void|DomainInterface
      *
      * @throws DomainNotExistsException
@@ -154,17 +124,11 @@ class DomainManager
         $domainNamespace = $this->getDomainClassName($domainDTO);
 
         // Not a valid domain!
-        if (is_string($domainNamespace) && ! class_exists($domainNamespace)) {
-            throw DomainNotExistsException::domainNotInstantiable($domainNamespace);
-        }
+        throw_if(is_string($domainNamespace) && ! class_exists($domainNamespace), DomainNotExistsException::domainNotInstantiable($domainNamespace));
 
-        if (realpath($domainDTO->filePath) === false) {
-            throw DomainNotExistsException::pathNotFound($domainDTO->filePath);
-        }
+        throw_if(realpath($domainDTO->filePath) === false, DomainNotExistsException::pathNotFound($domainDTO->filePath));
 
-        if (! is_subclass_of($domainNamespace, DomainInterface::class)) {
-            throw DomainExtendException::abstractClassNotExtended();
-        }
+        throw_unless(is_subclass_of($domainNamespace, DomainInterface::class), DomainExtendException::abstractClassNotExtended());
 
         if (! is_object($domainNamespace)) {
             /** @var DomainInterface $domainNamespace */
@@ -182,9 +146,65 @@ class DomainManager
 
         $this->domains[$classId] = $domainNamespace;
         $this->pathMap[$classId] = $domainDTO->filePath;
-        $this->normalizedMap[strtolower($classId)] = $classId;
+        $this->normalizedMap[mb_strtolower($classId)] = $classId;
 
         return $domainNamespace;
+    }
+
+    /**
+     * Resolves a domain identifier
+     *
+     * @param  mixed  $namespace  Domain class name or object
+     * @return string Identifier in format of Domain
+     */
+    public function getIdentifier($namespace): string
+    {
+        $namespace = $this->normalizeClassName($namespace);
+        if (str_contains($namespace, '\\')) {
+            return $namespace;
+        }
+
+        $parts = explode('\\', $namespace);
+        $slice = array_slice($parts, 1, 2);
+
+        return implode('.', $slice);
+    }
+
+    public function getProviders(): array
+    {
+        $providers = [];
+        /** @var DomainInterface $domainObj * */
+        foreach ($this->domains as $domainObj) {
+            $providers = array_merge($providers, $domainObj->registerProvider());
+        }
+
+        return $providers;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    protected function init(): void
+    {
+        $this->loadDomains();
+    }
+
+    /**
+     * Returns a path to a subdomain from the core domain
+     */
+    private function getPathFromCoreDomain(string $coreDomain, array $vendorPaths): string
+    {
+        $vendorName = '';
+        $vendorPaths = array_slice($vendorPaths, 1); // Removing domain name
+
+        foreach ($vendorPaths as $vendorPath) {
+            $vendorName = $vendorPath.'\\'.$vendorName;
+            if ($vendorPath === $coreDomain) {
+                break;
+            }
+        }
+
+        return mb_rtrim($vendorName, '\\');
     }
 
     /**
@@ -202,38 +222,5 @@ class DomainManager
         }
 
         return $domainDTO->namespace;
-    }
-
-    /**
-     * Resolves a domain identifier
-     *
-     * @param  mixed  $namespace Domain class name or object
-     * @return string           Identifier in format of Domain
-     */
-    public function getIdentifier($namespace): string
-    {
-        $namespace = $this->normalizeClassName($namespace);
-        if (str_contains($namespace, '\\')) {
-            return $namespace;
-        }
-
-        $parts = explode('\\', $namespace);
-        $slice = array_slice($parts, 1, 2);
-
-        return implode('.', $slice);
-    }
-
-    /**
-     * @return array
-     */
-    public function getProviders(): array
-    {
-        $providers = [];
-        /** @var DomainInterface $domainObj * */
-        foreach ($this->domains as $domainObj) {
-            $providers = array_merge($providers, $domainObj->registerProvider());
-        }
-
-        return $providers;
     }
 }

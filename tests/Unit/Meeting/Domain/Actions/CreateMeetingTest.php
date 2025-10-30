@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Meeting\Domain\Actions;
 
 use Heart\Meeting\Domain\Actions\CreateMeeting;
@@ -11,7 +13,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Meeting\MeetingProviderTrait;
 
-class CreateMeetingTest extends TestCase
+final class CreateMeetingTest extends TestCase
 {
     use MeetingProviderTrait;
     private MockInterface $meetingTypeRepositoryStub;
@@ -20,7 +22,7 @@ class CreateMeetingTest extends TestCase
 
     private NewMeetingDTO $payloadDTO;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->meetingTypeRepositoryStub = m::mock(MeetingRepository::class);
@@ -32,13 +34,13 @@ class CreateMeetingTest extends TestCase
         );
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testCreateMeeting(): void
+    public function test_create_meeting(): void
     {
         $this->meetingTypeRepositoryStub
             ->shouldReceive('create')

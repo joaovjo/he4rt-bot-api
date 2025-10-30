@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Application;
 
 use Heart\Provider\Domain\DTOs\NewProviderDTO;
@@ -8,19 +10,18 @@ use Heart\Provider\Domain\Enums\ProviderEnum;
 use Heart\Provider\Domain\Repositories\ProviderRepository;
 use Heart\User\Domain\Repositories\UserRepository;
 
-class NewAccountByProvider
+final readonly class NewAccountByProvider
 {
     public function __construct(
-        private readonly UserRepository $userRepository,
-        private readonly ProviderRepository $providerRepository,
-    ) {
-    }
+        private UserRepository $userRepository,
+        private ProviderRepository $providerRepository,
+    ) {}
 
     public function handle(ProviderEnum $providerEnum, string $providerId, string $username): ProviderEntity
     {
         $existentProvider = $this->providerRepository->getProvider($providerEnum->value, $providerId);
 
-        if ($existentProvider) {
+        if ($existentProvider instanceof ProviderEntity) {
             return $existentProvider;
         }
 

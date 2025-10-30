@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Integrations\Twitch\Common;
 
 use Heart\Integrations\Twitch\OAuth\Domain\TwitchOAuthService;

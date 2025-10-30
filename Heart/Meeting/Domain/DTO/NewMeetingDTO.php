@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Domain\DTO;
 
 use Heart\Provider\Domain\Enums\ProviderEnum;
 
-class NewMeetingDTO
+final readonly class NewMeetingDTO
 {
     public function __construct(
-        public readonly ProviderEnum $provider,
-        public readonly string $providerId,
-        public readonly int $meetingTypeId,
-    ) {
-    }
+        public ProviderEnum $provider,
+        public string $providerId,
+        public int $meetingTypeId,
+    ) {}
 
     public static function make(string $provider, string $providerId, int $meetingTypeId): self
     {

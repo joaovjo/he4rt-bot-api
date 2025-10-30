@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character\Application;
 
 use Heart\Badges\Application\FindBadgeBySlug;
@@ -15,10 +17,10 @@ use Tests\TestCase;
 use Tests\Unit\Character\BadgeProviderTrait;
 use Tests\Unit\Character\ProviderProviderTrait;
 
-class ClaimCharacterBadgeTest extends TestCase
+final class ClaimCharacterBadgeTest extends TestCase
 {
-    use ProviderProviderTrait;
     use BadgeProviderTrait;
+    use ProviderProviderTrait;
 
     private MockInterface $persistClaimBadgeStub;
 
@@ -32,7 +34,7 @@ class ClaimCharacterBadgeTest extends TestCase
 
     private BadgeEntity $badgeEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->persistClaimBadgeStub = m::mock(PersistClaimedBadge::class);
@@ -43,13 +45,13 @@ class ClaimCharacterBadgeTest extends TestCase
         $this->badgeEntity = $this->validBadgeEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testClaimCharacterBadgeSuccess(): void
+    public function test_claim_character_badge_success(): void
     {
         $this->findProviderStub
             ->shouldReceive('handle')

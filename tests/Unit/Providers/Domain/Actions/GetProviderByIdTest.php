@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Providers\Domain\Actions;
 
 use Heart\Provider\Domain\Actions\GetProviderById;
@@ -8,14 +10,14 @@ use Heart\Provider\Domain\Repositories\ProviderRepository;
 use Mockery as m;
 use Tests\TestCase;
 
-class GetProviderByIdTest extends TestCase
+final class GetProviderByIdTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    public function testGetProviderById()
+    public function test_get_provider_by_id(): void
     {
         $providerRepositoryStub = m::mock(ProviderRepository::class);
 

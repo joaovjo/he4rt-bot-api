@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Application;
 
 use Heart\Provider\Domain\Actions\GetProviderById;
@@ -7,11 +9,9 @@ use Heart\Provider\Domain\Entities\ProviderEntity;
 use Heart\Shared\Application\TTL;
 use Illuminate\Support\Facades\Cache;
 
-class FindProvider
+final readonly class FindProvider
 {
-    public function __construct(private readonly GetProviderById $action)
-    {
-    }
+    public function __construct(private GetProviderById $action) {}
 
     public function handle(string $provider, string $providerId): ProviderEntity
     {

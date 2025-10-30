@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Entities;
 
 use JsonSerializable;
 
-class CharacterEntity implements JsonSerializable
+final class CharacterEntity implements JsonSerializable
 {
-    public string $id;
-
-    public string $userId;
-
     public LevelEntity $level;
 
     public DailyRewardEntity $dailyReward;
@@ -17,14 +15,12 @@ class CharacterEntity implements JsonSerializable
     public ReputationEntity $reputation;
 
     public function __construct(
-        string $id,
-        string $userId,
+        public string $id,
+        public string $userId,
         int $reputation,
         int $experience,
         ?string $claimedAt = null
     ) {
-        $this->id = $id;
-        $this->userId = $userId;
         $this->reputation = new ReputationEntity($reputation);
         $this->level = new LevelEntity($experience);
         $this->dailyReward = new DailyRewardEntity($claimedAt);

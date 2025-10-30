@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Application;
 
 use Heart\Meeting\Domain\Actions\FinishMeeting;
 use Illuminate\Support\Facades\Cache;
 
-class EndMeeting
+final readonly class EndMeeting
 {
-    public function __construct(private readonly FinishMeeting $finishMeeting)
-    {
-    }
+    public function __construct(private FinishMeeting $finishMeeting) {}
 
     public function handle(): void
     {

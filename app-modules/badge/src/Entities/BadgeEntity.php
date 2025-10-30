@@ -1,20 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Entities;
 
 use JsonSerializable;
 
-class BadgeEntity implements JsonSerializable
+final readonly class BadgeEntity implements JsonSerializable
 {
     public function __construct(
-        public readonly int $id,
-        public readonly string $name,
-        public readonly string $description,
-        public readonly string $redeemCode,
-        public readonly bool $active,
-        public readonly string $imageUrl,
-    ) {
-    }
+        public int $id,
+        public string $name,
+        public string $description,
+        public string $redeemCode,
+        public bool $active,
+        public string $imageUrl,
+    ) {}
 
     public static function make(array $payload): self
     {

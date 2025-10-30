@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use Symfony\Component\HttpFoundation\Response;
 
-
-test('can create badge', function () {
+test('can create badge', function (): void {
     $payload = [
         'provider' => 'twitch',
         'name' => 'Aula foda',

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Season\Infrastructure\Repositories;
 
 use Heart\Season\Domain\Collections\SeasonCollection;
@@ -8,11 +10,11 @@ use Heart\Season\Domain\Repositories\SeasonRepository;
 use Heart\Season\Infrastructure\Models\Season;
 use Illuminate\Database\Eloquent\Builder;
 
-class SeasonEloquentRepository implements SeasonRepository
+final readonly class SeasonEloquentRepository implements SeasonRepository
 {
     private Builder $query;
 
-    public function __construct(private readonly Season $model)
+    public function __construct(private Season $model)
     {
         $this->query = $this->model->newQuery();
     }

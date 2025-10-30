@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Infrastructure\Models;
 
 use Heart\Character\Infrastructure\Models\Character;
@@ -16,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $username
  * @property bool $is_donator
  */
-class User extends Model
+final class User extends Model
 {
     use HasFactory;
     use HasUuids;

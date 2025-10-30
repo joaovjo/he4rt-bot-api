@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Infrastructure\Factories;
 
 use Heart\Meeting\Infrastructure\Models\MeetingType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MeetingTypeFactory extends Factory
+final class MeetingTypeFactory extends Factory
 {
     protected $model = MeetingType::class;
 

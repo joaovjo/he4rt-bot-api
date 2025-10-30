@@ -1,19 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateMessageRequest extends FormRequest
+final class CreateMessageRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return true;
-    }
-
-    protected function prepareForValidation(): void
-    {
-        $this->merge(['provider' => $this->route('provider')]);
     }
 
     public function rules(): array
@@ -26,5 +23,10 @@ class CreateMessageRequest extends FormRequest
             'content' => ['required', 'string'],
             'sent_at' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge(['provider' => $this->route('provider')]);
     }
 }

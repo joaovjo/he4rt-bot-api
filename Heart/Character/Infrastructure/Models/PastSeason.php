@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Infrastructure\Models;
 
 use Heart\Character\Infrastructure\Factories\PastSeasonFactory;
@@ -7,10 +9,10 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PastSeason extends Model
+final class PastSeason extends Model
 {
-    use HasUuids;
     use HasFactory;
+    use HasUuids;
 
     protected $table = 'seasons_rankings';
 

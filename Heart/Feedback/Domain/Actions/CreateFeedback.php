@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Domain\Actions;
 
 use Heart\Feedback\Domain\DTOs\NewFeedbackDTO;
@@ -8,13 +10,12 @@ use Heart\Feedback\Domain\Repositories\FeedbackRepository;
 use Heart\Provider\Application\FindProvider;
 use Heart\Provider\Domain\Enums\ProviderEnum;
 
-class CreateFeedback
+final readonly class CreateFeedback
 {
     public function __construct(
-        private readonly FeedbackRepository $feedbackRepository,
-        private readonly FindProvider $findProvider
-    ) {
-    }
+        private FeedbackRepository $feedbackRepository,
+        private FindProvider $findProvider
+    ) {}
 
     public function handle(array $payload): FeedbackEntity
     {

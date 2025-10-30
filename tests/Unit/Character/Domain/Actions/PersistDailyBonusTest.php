@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character\Domain\Actions;
 
-use Carbon\Carbon;
 use Heart\Character\Domain\Actions\PersistDailyBonus;
 use Heart\Character\Domain\Exceptions\CharacterException;
 use Heart\Character\Domain\Repositories\CharacterRepository;
+use Illuminate\Support\Facades\Date;
 use Mockery as m;
 use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Character\CharacterProviderTrait;
 
-class PersistDailyBonusTest extends TestCase
+final class PersistDailyBonusTest extends TestCase
 {
     use CharacterProviderTrait;
 
@@ -19,25 +21,25 @@ class PersistDailyBonusTest extends TestCase
 
     private PersistDailyBonus $action;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->characterRepository = m::mock(CharacterRepository::class);
         $this->action = new PersistDailyBonus($this->characterRepository);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testCanClaim(): void
+    public function test_can_claim(): void
     {
         $characterId = '123';
-        Carbon::setTestNow(now()->subMinute());
+        Date::setTestNow(now()->subMinute());
         $characterEntity = $this->validCharacterEntity();
-        Carbon::setTestNow(now()->addDay()->addMinute());
+        Date::setTestNow(now()->addDay()->addMinute());
 
         $this->characterRepository
             ->shouldReceive('findById')
@@ -53,7 +55,7 @@ class PersistDailyBonusTest extends TestCase
         $this->action->handle($characterId);
     }
 
-    public function testShouldNotClaim(): void
+    public function test_should_not_claim(): void
     {
         $this->expectException(CharacterException::class);
 

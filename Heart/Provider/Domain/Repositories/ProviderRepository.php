@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Domain\Repositories;
 
-use Heart\Authentication\OAuth\Domain\DTO\OAuthUserDTO;
 use Heart\Provider\Domain\DTOs\NewProviderDTO;
 use Heart\Provider\Domain\Entities\ProviderEntity;
-use Heart\Provider\Domain\Enums\ProviderEnum;
 
 interface ProviderRepository
 {

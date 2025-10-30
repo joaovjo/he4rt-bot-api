@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Meeting;
 
 use Heart\Meeting\Infrastructure\Models\MeetingType;
@@ -9,11 +11,11 @@ use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class StartMeetingTest extends TestCase
+final class StartMeetingTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testBotCanStartNewMeeting(): void
+    public function test_bot_can_start_new_meeting(): void
     {
         // Arrange
         $providerName = 'discord';
@@ -44,7 +46,7 @@ class StartMeetingTest extends TestCase
         $this->assertTrue(Cache::tags(['meetings'])->has('current-meeting'));
     }
 
-    public function testMeetingTypeNotFound(): void
+    public function test_meeting_type_not_found(): void
     {
         // Arrange
         $providerName = 'discord';
@@ -54,11 +56,6 @@ class StartMeetingTest extends TestCase
         $payload = [
             'meeting_type_id' => 12,
             'provider_id' => $provider->provider_id,
-        ];
-
-        $expectedResponse = [
-            'meeting_type_id' => 12,
-            'admin_id' => $provider->user_id,
         ];
 
         // Act

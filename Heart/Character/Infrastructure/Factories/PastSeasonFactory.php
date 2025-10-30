@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Infrastructure\Factories;
 
 use Heart\Character\Infrastructure\Models\Character;
 use Heart\Character\Infrastructure\Models\PastSeason;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PastSeasonFactory extends Factory
+final class PastSeasonFactory extends Factory
 {
     protected $model = PastSeason::class;
 

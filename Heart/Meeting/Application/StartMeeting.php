@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Application;
 
 use Heart\Meeting\Domain\Actions\CreateMeeting;
@@ -10,14 +12,13 @@ use Heart\Provider\Application\FindProvider;
 use Heart\Shared\Application\TTL;
 use Illuminate\Support\Facades\Cache;
 
-class StartMeeting
+final readonly class StartMeeting
 {
     public function __construct(
-        private readonly CreateMeeting $createMeetingAction,
-        private readonly FindProvider $findProvider,
-        private readonly FindMeetingType $findMeetingType,
-    ) {
-    }
+        private CreateMeeting $createMeetingAction,
+        private FindProvider $findProvider,
+        private FindMeetingType $findMeetingType,
+    ) {}
 
     public function handle(string $provider, string $providerId, int $meetingTypeId): MeetingEntity
     {

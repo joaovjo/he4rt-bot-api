@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Infrastructure\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $character_id
  * @property int $balance
  */
-class Wallet extends Model
+final class Wallet extends Model
 {
     protected $table = 'character_wallet';
 

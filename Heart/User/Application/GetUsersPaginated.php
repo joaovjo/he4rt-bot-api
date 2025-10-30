@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Application;
 
 use Heart\Shared\Domain\Paginator;
 use Heart\User\Domain\Repositories\UserRepository;
 
-class GetUsersPaginated
+final readonly class GetUsersPaginated
 {
-    public function __construct(private readonly UserRepository $repository)
-    {
-    }
+    public function __construct(private UserRepository $repository) {}
 
     public function handle(): Paginator
     {

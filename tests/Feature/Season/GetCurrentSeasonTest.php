@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Season;
 
 use Heart\Season\Infrastructure\Models\Season;
@@ -7,11 +9,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 
-class GetCurrentSeasonTest extends TestCase
+final class GetCurrentSeasonTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testGetCurrentSeasonSuccess(): void
+    public function test_get_current_season_success(): void
     {
         $season = Season::factory()->create();
 

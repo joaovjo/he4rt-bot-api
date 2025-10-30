@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Infrastructure\Models;
 
 use Heart\Feedback\Domain\Enums\ReviewTypeEnum;
@@ -8,7 +10,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Review extends Model
+final class Review extends Model
 {
     use HasUuids;
 

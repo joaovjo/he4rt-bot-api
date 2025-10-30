@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Entities;
 
 use DateInterval;
-use DateTime;
+use DateTimeImmutable;
 
-class DailyRewardEntity
+final class DailyRewardEntity
 {
-    public ?DateTime $claimedAt;
+    public ?DateTimeImmutable $claimedAt;
 
     public function __construct(?string $claimedAt)
     {
-        $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $claimedAt);
+        $dateTime = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $claimedAt);
         if (! $dateTime) {
             $dateTime = null;
         }
@@ -27,7 +29,7 @@ class DailyRewardEntity
 
         $dateTimeInterval = DateInterval::createFromDateString('1 day');
         $oneDayLater = (clone $this->claimedAt)->add($dateTimeInterval);
-        $now = new DateTime(now());
+        $now = new DateTimeImmutable(now());
 
         return $now > $oneDayLater;
     }

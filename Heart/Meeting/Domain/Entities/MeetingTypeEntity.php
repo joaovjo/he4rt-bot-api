@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Meeting\Domain\Entities;
 
-use DateTime;
+use DateTimeImmutable;
 
-class MeetingTypeEntity
+final readonly class MeetingTypeEntity
 {
     public function __construct(
-        public readonly int $id,
-        public readonly string $name,
-        public readonly int $weekDay,
-        public readonly DateTime $startAt
-    ) {
-    }
+        public int $id,
+        public string $name,
+        public int $weekDay,
+        public DateTimeImmutable $startAt
+    ) {}
 
     public static function make(array $payload): self
     {
@@ -20,7 +21,7 @@ class MeetingTypeEntity
             id: $payload['id'],
             name: $payload['name'],
             weekDay: $payload['week_day'],
-            startAt: new DateTime($payload['start_at']),
+            startAt: new DateTimeImmutable($payload['start_at']),
         );
     }
 

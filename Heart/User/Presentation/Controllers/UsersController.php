@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Presentation\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -12,7 +14,7 @@ use Heart\User\Domain\Exceptions\UserEntityException;
 use Heart\User\Presentation\Requests\UpdateProfileRequest;
 use Illuminate\Http\JsonResponse;
 
-class UsersController extends Controller
+final class UsersController extends Controller
 {
     public function getUsers(GetUsersPaginated $getUsers): JsonResponse
     {
@@ -23,10 +25,10 @@ class UsersController extends Controller
     {
         try {
             return response()->json($getUser->handle($id));
-        } catch (UserEntityException $e) {
+        } catch (UserEntityException $userEntityException) {
             return response()->json(
-                ['error' => $e->getMessage()],
-                $e->getCode()
+                ['error' => $userEntityException->getMessage()],
+                $userEntityException->getCode()
             );
         }
     }
@@ -45,6 +47,7 @@ class UsersController extends Controller
         UpdateProfile $action,
     ): JsonResponse {
         $action->handle($value, $request->validated());
+
         return response()->json();
     }
 }

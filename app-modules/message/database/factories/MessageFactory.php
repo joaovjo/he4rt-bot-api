@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Database\Factories;
 
 use He4rt\Message\Models\Message;
 use Heart\Provider\Infrastructure\Models\Provider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MessageFactory extends Factory
+final class MessageFactory extends Factory
 {
     protected $model = Message::class;
 

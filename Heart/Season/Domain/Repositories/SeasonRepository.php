@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Season\Domain\Repositories;
 
 use Heart\Season\Domain\Collections\SeasonCollection;

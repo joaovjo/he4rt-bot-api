@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Presentation\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateFeedbackRequest extends FormRequest
+final class CreateFeedbackRequest extends FormRequest
 {
     public function authorize(): bool
     {

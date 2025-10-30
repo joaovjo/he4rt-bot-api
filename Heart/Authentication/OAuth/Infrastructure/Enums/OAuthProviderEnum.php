@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Authentication\OAuth\Infrastructure\Enums;
 
 use Heart\Authentication\OAuth\Domain\Interfaces\OAuthClientContract;

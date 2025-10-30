@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Entities;
 
-use DateTime;
+use DateTimeImmutable;
 
-class MessageEntity
+final class MessageEntity
 {
     public function __construct(
         public string $id,
@@ -13,10 +15,9 @@ class MessageEntity
         public int $seasonId,
         public string $channelId,
         public string $content,
-        public DateTime $sentAt,
+        public DateTimeImmutable $sentAt,
         public int $obtainedExperience,
-    ) {
-    }
+    ) {}
 
     public static function make(array $payload): self
     {

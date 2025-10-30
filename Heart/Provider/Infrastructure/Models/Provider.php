@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Infrastructure\Models;
 
 use He4rt\Message\Models\Message;
@@ -20,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $provider_id
  * @property string $provider
  */
-class Provider extends Model
+final class Provider extends Model
 {
     use HasFactory;
     use HasUuids;
@@ -39,7 +41,7 @@ class Provider extends Model
         'messages_count',
     ];
 
-    public function getMessagesCountAttribute(): int
+    protected function getMessagesCountAttribute(): int
     {
         return $this->messages()->count();
     }

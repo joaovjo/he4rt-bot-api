@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Domain\Exceptions;
 
 use Exception;
 
-class UserEntityException extends Exception
+final class UserEntityException extends Exception
 {
     public static function failedToCreateEntity(): self
     {

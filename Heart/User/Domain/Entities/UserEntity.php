@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\User\Domain\Entities;
 
 use Exception;
 use Heart\User\Domain\Exceptions\UserEntityException;
 use Heart\User\Domain\ValueObjects\UserName;
 
-class UserEntity
+final readonly class UserEntity
 {
     public function __construct(
-        public readonly string $id,
-        public readonly UserName $name,
-        public readonly bool $isDonator,
-    ) {
-    }
+        public string $id,
+        public UserName $name,
+        public bool $isDonator,
+    ) {}
 
     /** @throws UserEntityException */
     public static function make(array $payload): self
@@ -24,7 +25,7 @@ class UserEntity
                 name: $payload['username'],
                 isDonator: $payload['isDonator']
             );
-        } catch (Exception $e) {
+        } catch (Exception) {
             throw UserEntityException::failedToCreateEntity();
         }
     }
@@ -32,7 +33,7 @@ class UserEntity
     /** @throws UserEntityException */
     public static function fromArray(array $user): self
     {
-        return new UserEntity(
+        return new self(
             id: $user['id'],
             name: new UserName($user['username']),
             isDonator: $user['is_donator']

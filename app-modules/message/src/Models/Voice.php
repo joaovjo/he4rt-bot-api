@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Models;
 
 use Heart\Provider\Infrastructure\Models\Provider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Voice extends Model
+final class Voice extends Model
 {
     protected $table = 'voice_messages';
 
@@ -15,7 +17,7 @@ class Voice extends Model
         'season_id',
         'channel_name',
         'state',
-        'obtained_experience'
+        'obtained_experience',
     ];
 
     public function provider(): BelongsTo

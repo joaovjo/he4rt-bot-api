@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Infrastructure\Repositories;
 
 use Heart\Feedback\Domain\DTOs\FeedbackReviewDTO;
@@ -9,11 +11,9 @@ use Heart\Feedback\Domain\Repositories\FeedbackRepository;
 use Heart\Feedback\Infrastructure\Exceptions\FeedbackException;
 use Heart\Feedback\Infrastructure\Models\Feedback;
 
-class FeedbackEloquentRepository implements FeedbackRepository
+final readonly class FeedbackEloquentRepository implements FeedbackRepository
 {
-    public function __construct(private readonly Feedback $model)
-    {
-    }
+    public function __construct(private Feedback $model) {}
 
     public function findById(string $id): FeedbackEntity
     {
@@ -21,9 +21,7 @@ class FeedbackEloquentRepository implements FeedbackRepository
             ->newQuery()
             ->find($id);
 
-        if (! $model) {
-            throw FeedbackException::idNotFound($id);
-        }
+        throw_unless($model, FeedbackException::idNotFound($id));
 
         return FeedbackEntity::make($model->toArray());
     }

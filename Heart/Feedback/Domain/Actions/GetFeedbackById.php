@@ -1,17 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Feedback\Domain\Actions;
 
 use Heart\Feedback\Domain\Entities\FeedbackEntity;
 use Heart\Feedback\Domain\Repositories\FeedbackRepository;
 
-class GetFeedbackById
+final readonly class GetFeedbackById
 {
-    private FeedbackRepository $repository;
-
-    public function __construct(FeedbackRepository $repository)
+    public function __construct(private FeedbackRepository $repository)
     {
-        $this->repository = $repository;
     }
 
     public function handle(string $id): FeedbackEntity

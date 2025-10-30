@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Provider\Infrastructure\Factories;
 
 use Heart\Provider\Infrastructure\Models\Provider;
 use Heart\Provider\Infrastructure\Models\Token;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TokenFactory extends Factory
+final class TokenFactory extends Factory
 {
     protected $model = Token::class;
 

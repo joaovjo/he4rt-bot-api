@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Repositories;
 
 use Heart\Character\Domain\Entities\CharacterEntity;

@@ -1,22 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Entities;
 
 use JsonSerializable;
 
-class PastSeasonEntity implements JsonSerializable
+final readonly class PastSeasonEntity implements JsonSerializable
 {
     public function __construct(
-        private readonly string $id,
-        private readonly string $seasonId,
-        private readonly string $characterId,
-        private readonly int $rankingPosition,
-        private readonly int $experience,
-        private readonly int $messagesCount,
-        private readonly int $badgesCount,
-        private readonly int $meetingsCount,
-    ) {
-    }
+        private string $id,
+        private string $seasonId,
+        private string $characterId,
+        private int $rankingPosition,
+        private int $experience,
+        private int $messagesCount,
+        private int $badgesCount,
+        private int $meetingsCount,
+    ) {}
 
     public static function make(array $payload): self
     {

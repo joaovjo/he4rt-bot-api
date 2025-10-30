@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\User;
 
 use Heart\User\Domain\Entities\UserEntity;
@@ -17,7 +19,7 @@ trait UserProviderTrait
         ];
     }
 
-    public function validUserEntity(): userEntity
+    public function validUserEntity(): UserEntity
     {
         return UserEntity::make($this->validUserPayload());
     }

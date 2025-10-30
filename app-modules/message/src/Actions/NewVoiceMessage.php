@@ -1,22 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Message\Actions;
 
-use Heart\Character\Application\FindCharacterIdByUserId;
-use Heart\Character\Domain\Actions\IncrementExperience;
 use He4rt\Message\DTOs\NewVoiceMessageDTO;
 use He4rt\Message\Repositories\VoiceRepository;
+use Heart\Character\Application\FindCharacterIdByUserId;
+use Heart\Character\Domain\Actions\IncrementExperience;
 use Heart\Provider\Application\FindProvider;
 
-class NewVoiceMessage
+final readonly class NewVoiceMessage
 {
     public function __construct(
-        private readonly FindProvider $findProvider,
-        private readonly FindCharacterIdByUserId $findCharacterId,
-        private readonly IncrementExperience $characterExperience,
-        private readonly VoiceRepository $voiceRepository
-    ) {
-    }
+        private FindProvider $findProvider,
+        private FindCharacterIdByUserId $findCharacterId,
+        private IncrementExperience $characterExperience,
+        private VoiceRepository $voiceRepository
+    ) {}
 
     public function persist(array $payload): void
     {

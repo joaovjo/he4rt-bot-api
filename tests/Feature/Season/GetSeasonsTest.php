@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Season;
 
 use Heart\Season\Infrastructure\Models\Season;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class GetSeasonsTest extends TestCase
+final class GetSeasonsTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testGetSeasonsSuccess(): void
+    public function test_get_seasons_success(): void
     {
         Season::factory()->create();
 

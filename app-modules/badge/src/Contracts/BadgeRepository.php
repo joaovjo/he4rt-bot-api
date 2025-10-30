@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Contracts;
 
 use He4rt\Badge\DTOs\NewBadgeDTO;

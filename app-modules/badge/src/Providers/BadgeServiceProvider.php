@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace He4rt\Badge\Providers;
 
 use He4rt\Badge\Contracts\BadgeRepository;
 use He4rt\Badge\Repositories\BadgeEloquentRepository;
 use Illuminate\Support\ServiceProvider;
 
-class BadgeServiceProvider extends ServiceProvider
+final class BadgeServiceProvider extends ServiceProvider
 {
     public function register(): void
     {

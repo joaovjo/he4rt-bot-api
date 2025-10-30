@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character\Application;
 
 use Heart\Character\Application\FindCharacterIdByUserId;
@@ -10,7 +12,7 @@ use Mockery\MockInterface;
 use Tests\TestCase;
 use Tests\Unit\Character\CharacterProviderTrait;
 
-class FindCharacterIdByUserIdTest extends TestCase
+final class FindCharacterIdByUserIdTest extends TestCase
 {
     use CharacterProviderTrait;
 
@@ -18,20 +20,20 @@ class FindCharacterIdByUserIdTest extends TestCase
 
     private CharacterEntity $characterEntity;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->getCharacterIdByUserId = m::mock(GetCharacterByUserId::class);
         $this->characterEntity = $this->validCharacterEntity();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         m::close();
     }
 
-    public function testFindCharacterByUserId(): void
+    public function test_find_character_by_user_id(): void
     {
         $this->getCharacterIdByUserId
             ->shouldReceive('handle')

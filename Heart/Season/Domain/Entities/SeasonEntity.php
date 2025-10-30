@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Season\Domain\Entities;
 
-use DateTime;
+use DateTimeImmutable;
 
-class SeasonEntity
+final class SeasonEntity
 {
     public function __construct(
         public string $id,
@@ -14,16 +16,15 @@ class SeasonEntity
         public int $participantsCount,
         public int $meetingCount,
         public int $badgesCount,
-        public DateTime $startAt,
-        public ?DateTime $endAt,
-    ) {
-    }
+        public DateTimeImmutable $startAt,
+        public ?DateTimeImmutable $endAt,
+    ) {}
 
     public static function make(array $payload): self
     {
-        $endsAt = ! empty($payload['ended_at'])
-            ? new DateTime($payload['ended_at'])
-            : null;
+        $endsAt = empty($payload['ended_at'])
+            ? null
+            : new DateTimeImmutable($payload['ended_at']);
 
         return new self(
             id: $payload['id'],
@@ -33,7 +34,7 @@ class SeasonEntity
             participantsCount: $payload['participants_count'],
             meetingCount: $payload['meeting_count'],
             badgesCount: $payload['badges_count'],
-            startAt: new DateTime($payload['started_at']),
+            startAt: new DateTimeImmutable($payload['started_at']),
             endAt: $endsAt,
         );
     }

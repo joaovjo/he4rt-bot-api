@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Integrations\Twitch\OAuth\Infrastructure;
 
 use GuzzleHttp\Client;
@@ -8,11 +10,9 @@ use Heart\Integrations\Twitch\OAuth\Domain\DTO\TwitchOAuthAccessDTO;
 use Heart\Integrations\Twitch\OAuth\Domain\DTO\TwitchOAuthDTO;
 use Heart\Integrations\Twitch\OAuth\Domain\TwitchOAuthService;
 
-class TwitchOAuthClient implements TwitchOAuthService
+final readonly class TwitchOAuthClient implements TwitchOAuthService
 {
-    public function __construct(private readonly Client $client)
-    {
-    }
+    public function __construct(private Client $client) {}
 
     public function redirectUrl(): string
     {

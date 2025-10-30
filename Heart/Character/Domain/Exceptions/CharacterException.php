@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Exceptions;
 
 use Exception;
 use Heart\Character\Domain\Entities\DailyRewardEntity;
 use Symfony\Component\HttpFoundation\Response;
 
-class CharacterException extends Exception
+final class CharacterException extends Exception
 {
     public static function alreadyClaimed(DailyRewardEntity $dailyReward): self
     {

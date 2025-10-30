@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\User;
 
 use Heart\Badges\Infrastructure\Model\Badge;
@@ -14,11 +16,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class FindProfileTest extends TestCase
+final class FindProfileTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function testCanFindProfileWithUsername(): void
+    public function test_can_find_profile_with_username(): void
     {
         $user = User::factory()
             ->has(Character::factory()->has(PastSeason::factory()), 'character')
@@ -26,11 +28,7 @@ class FindProfileTest extends TestCase
             ->has(Information::factory(), 'information')
             ->has(Provider::factory()->has(Message::factory()->count(2)))
             ->create();
-
-//        $badge = Badge::factory()->create();
-
-        $character = $user->character;
-//        $character->badges()->attach($badge->id, ['claimed_at' => now()]);
+        //        $character->badges()->attach($badge->id, ['claimed_at' => now()]);
 
         $this
             ->actingAsAdmin()
@@ -64,7 +62,7 @@ class FindProfileTest extends TestCase
             ]);
     }
 
-    public function testCanFindProfileWithProviderId(): void
+    public function test_can_find_profile_with_provider_id(): void
     {
         $user = User::factory()
             ->has(Character::factory()->has(PastSeason::factory()), 'character')

@@ -1,20 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Domain\Collections;
 
 use ArrayIterator;
 use Heart\Character\Domain\Entities\PastSeasonEntity;
 use JsonSerializable;
 
-class PastSeasonCollection extends ArrayIterator implements JsonSerializable
+final class PastSeasonCollection extends ArrayIterator implements JsonSerializable
 {
-    public function add(PastSeasonEntity $entity): static
-    {
-        $this->append($entity);
-
-        return $this;
-    }
-
     public static function make(array $payload): self
     {
         $pastSeasons = [];
@@ -23,6 +18,13 @@ class PastSeasonCollection extends ArrayIterator implements JsonSerializable
         }
 
         return new self($pastSeasons);
+    }
+
+    public function add(PastSeasonEntity $entity): static
+    {
+        $this->append($entity);
+
+        return $this;
     }
 
     public function jsonSerialize(): array

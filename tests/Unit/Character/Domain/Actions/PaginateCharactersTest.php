@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Character\Domain\Actions;
 
 use Heart\Character\Domain\Actions\PaginateCharacters;
@@ -9,7 +11,7 @@ use Mockery as m;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
-class PaginateCharactersTest extends TestCase
+final class PaginateCharactersTest extends TestCase
 {
     private MockInterface $characterRepository;
 
@@ -28,7 +30,7 @@ class PaginateCharactersTest extends TestCase
         m::close();
     }
 
-    public function testCanPaginate(): void
+    public function test_can_paginate(): void
     {
         $this->characterRepository
             ->shouldReceive('paginate')

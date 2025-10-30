@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Heart\Character\Presentation\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -12,7 +14,7 @@ use Heart\Character\Presentation\Requests\ClaimBadgeRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
-class CharactersController extends Controller
+final class CharactersController extends Controller
 {
     public function getCharacters(PaginateCharacters $action): JsonResponse
     {
@@ -33,8 +35,8 @@ class CharactersController extends Controller
             $action->handle($provider, $providerId);
 
             return response()->noContent();
-        } catch (CharacterException $e) {
-            return response()->json($e->getMessage(), $e->getCode());
+        } catch (CharacterException $characterException) {
+            return response()->json($characterException->getMessage(), $characterException->getCode());
         }
     }
 

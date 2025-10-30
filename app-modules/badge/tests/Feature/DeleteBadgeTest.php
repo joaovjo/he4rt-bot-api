@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
 
 use He4rt\Badge\Models\Badge;
 use Symfony\Component\HttpFoundation\Response;
 
-
-test('can delete badge', function () {
+test('can delete badge', function (): void {
     $badge = Badge::factory()->create();
 
     $this->actingAsAdmin()
