@@ -1,59 +1,76 @@
-version: '3.1'
 services:
-  mysql:
-    image: mysql
-
-    restart: unless-stopped
-    ports:
-      - '3306:3306'
-    environment:
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - mysql:/data
-    networks:
-      - app-network
-
-  app:
-    container_name: discord-bot-api
+  he4rtbot-db:
     build:
-      context: ./
-    networks:
-      - app-network
-    depends_on:
-      - mysql
-    volumes:
-      - ./:/var/www/
-  webserver:
-    image: nginx:alpine
-    container_name: webserver
-    restart: unless-stopped
-    tty: true
+      dockerfile: docker/postgres.Dockerfile
+      context: .
+    image: postgres.local:18
+    container_name: he4rtbot-db
+    restart: no
+    hostname: dev
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dev_he4rtbot
     ports:
-      - '88:80'
-      - '443:443'
+      - '5432:5432'
     volumes:
-      - ./:/var/www
-      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - he4rtbot-db:/var/lib/postgresql/data
     networks:
-      - app-network
-  cache:
-    image: redis:6.2-alpine
-    restart: always
+      - dev-he4rtbot
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready --quiet --username=postgres --dbname=postgres || exit 1']
+      interval: 10s
+      retries: 5
+      timeout: 10s
+      start_period: 15s
+
+  he4rtbot-redis:
+    build:
+      dockerfile: docker/redis.Dockerfile
+      context: .
+    image: redis.local:8
+    container_name: he4rtbot-redis
+    restart: no
+    hostname: dev
     ports:
       - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
-    volumes:
-      - cache:/data
     networks:
-      - app-network
-networks:
-  app-network:
-    driver: bridge
+      - dev-he4rtbot
+    healthcheck:
+      test: ['CMD-SHELL', 'redis-cli --raw incr ping || exit 1']
+      interval: 10s
+      retries: 5
+      timeout: 10s
+      start_period: 15s
+
+  he4rtbot-mailpit:
+    build:
+      dockerfile: docker/mailpit.Dockerfile
+      context: .
+    image: mailpit.local:1
+    container_name: he4rtbot-mailpit
+    restart: no
+    hostname: dev
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    networks:
+      - dev-he4rtbot
+    healthcheck:
+      test: ['CMD', '/mailpit', 'readyz']
+      interval: 10s
+      retries: 5
+      timeout: 10s
+      start_period: 10s
+
 volumes:
-  cache:
-    driver: local
-  mysql:
-    driver: local
+  he4rtbot-db:
+    name: he4rtbot-db
+
+networks:
+  dev-he4rtbot:
+    name: dev-he4rtbot
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: dev-he4rtbot
+      com.docker.network.bridge.host_binding_ipv4: '127.0.0.1'
