@@ -19,13 +19,16 @@
         "predis/predis": "^2.1"
     },
     "require-dev": {
+        "driftingly/rector-laravel": "^2.1",
         "fakerphp/faker": "^v1",
+        "larastan/larastan": "^3.7",
         "laravel/pint": "^v1",
         "laravel/sail": "^v1",
         "mockery/mockery": "^1",
         "nunomaduro/collision": "^v8",
         "pestphp/pest": "^4.1",
         "pestphp/pest-plugin-drift": "^4.0",
+        "rector/rector": "^2.2",
         "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
