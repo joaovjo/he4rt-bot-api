@@ -2,7 +2,7 @@
 
 namespace Heart\Provider\Infrastructure\Models;
 
-use Heart\Message\Infrastructure\Models\Message;
+use He4rt\Message\Models\Message;
 use Heart\Provider\Infrastructure\Factories\ProviderFactory;
 use Heart\User\Infrastructure\Models\User;
 use Illuminate\Database\Eloquent\Collection;
