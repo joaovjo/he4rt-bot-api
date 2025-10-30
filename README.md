@@ -1,4 +1,5 @@
 # He4rtBot Discord API
+
 <p align="center">
   <a href="https://discord.gg/he4rt">
     <img src="./.github/logo.png" height="220">
@@ -36,7 +37,8 @@ make migrate
 make test
 ```
 
-With filter: 
+With filter:
+
 ```bash
 make test filter=ClassName
 ```

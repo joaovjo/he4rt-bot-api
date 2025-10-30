@@ -34,7 +34,7 @@ return RectorConfig::configure()
     ->withImportNames(importShortClasses: false, removeUnusedImports: true)
     ->withAttributesSets()
     ->withRootFiles()
-    ->withPhpSets(php83: true)
+    ->withPhpSets()
     ->withBootstrapFiles([__DIR__.'/vendor/larastan/larastan/bootstrap.php'])
     ->withPHPStanConfigs([__DIR__.'/phpstan.neon'])
     ->withPreparedSets(
@@ -53,7 +53,7 @@ return RectorConfig::configure()
         ChangeOrIfContinueToMultiContinueRector::class,
         PostIncDecToPreIncDecRector::class,
         AddOverrideAttributeToOverriddenMethodsRector::class,
-        AddArrowFunctionReturnTypeRector::class
+        AddArrowFunctionReturnTypeRector::class,
     ])
     ->withSets([
         LaravelSetList::LARAVEL_ARRAYACCESS_TO_METHOD_CALL,

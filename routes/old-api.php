@@ -28,20 +28,16 @@ use Laravel\Lumen\Routing\Router;
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/', fn () => $router->app->version());
 
 if (config('app.env') !== 'production') {
-    $router->get('swagger', function () {
-        return view('swagger');
-    });
+    $router->get('swagger', fn () => view('swagger'));
 }
 
 $router->get('/auth/oauth/{provider}', AuthController::class.'@authenticate');
 $router->get('/auth/logout', AuthController::class.'@logout');
 
-$router->group(['prefix' => 'users', 'middleware' => 'bot-auth'], function (Router $router) {
+$router->group(['prefix' => 'users', 'middleware' => 'bot-auth'], function (Router $router): void {
     /*
     |--------------------------------------------------------------------------
     | Basic User Routes
@@ -68,12 +64,12 @@ $router->group(['prefix' => 'users', 'middleware' => 'bot-auth'], function (Rout
     $router->get('/{discordId}/voice', ['uses' => RewardController::class.'@claimVoiceXp', 'as' => 'users.voice.claim']);
 });
 
-$router->group(['prefix' => 'events', 'middleware' => 'bot-auth'], function (Router $router) {
-    $router->group(['prefix' => 'badges'], function (Router $router) {
+$router->group(['prefix' => 'events', 'middleware' => 'bot-auth'], function (Router $router): void {
+    $router->group(['prefix' => 'badges'], function (Router $router): void {
         $router->post('/', ['uses' => BadgesController::class.'@postBadge', 'as' => 'events.badges.store']);
     });
 
-    $router->group(['prefix' => 'meeting'], function ($router) {
+    $router->group(['prefix' => 'meeting'], function ($router): void {
         $router->post('/end', ['uses' => MeetingsController::class.'@postEndMeeting', 'as' => 'events.meeting.postEndMeeting']);
         $router->post('/attend', ['uses' => MeetingsController::class.'@postAttendMeeting', 'as' => 'events.meeting.postAttendMeeting']);
         $router->patch(
@@ -83,32 +79,33 @@ $router->group(['prefix' => 'events', 'middleware' => 'bot-auth'], function (Rou
     });
 });
 
-$router->group(['prefix' => 'bot', 'middleware' => 'bot-auth'], function (Router $router) {
-    $router->group(['prefix' => 'gambling'], function (Router $router) {
+$router->group(['prefix' => 'bot', 'middleware' => 'bot-auth'], function (Router $router): void {
+    $router->group(['prefix' => 'gambling'], function (Router $router): void {
         $router->put('money', GamblingController::class.'@putMoney');
     });
 });
 
-$router->group(['prefix' => 'ranking'], function (Router $router) {
+$router->group(['prefix' => 'ranking'], function (Router $router): void {
     $router->get('general', RankingController::class.'@getGeneralLevelRanking');
     $router->get('messages', RankingController::class.'@getGeneralMessageRanking');
 });
 
-$router->group(['prefix' => 'feedback', 'as' => 'feedback'], function (Router $router) {
+$router->group(['prefix' => 'feedback', 'as' => 'feedback'], function (Router $router): void {
     $router->post('/', ['uses' => FeedbackController::class.'@create', 'as' => 'create']);
     $router->post('/review/{feedbackId}/approve', ['uses' => FeedbackReviewController::class.'@approve', 'as' => 'review.approve']);
     $router->post('/review/{feedbackId}/decline', ['uses' => FeedbackReviewController::class.'@decline', 'as' => 'review.decline']);
 });
 
 if (config('features.gamification.badges')) {
-    $router->group(['prefix' => 'badges'], function (Router $router) {
+    $router->group(['prefix' => 'badges'], function (Router $router): void {
         $router->get('/', BadgesController::class.'@getBadges');
         $router->post('/', BadgesController::class.'@postBadge');
         $router->get('/{badgeId}', BadgesController::class.'@getBadge');
         $router->delete('/{badgeId}', BadgesController::class.'@deleteBadge');
     });
 }
-$router->group(['prefix' => 'seasons'], function ($router) {
+
+$router->group(['prefix' => 'seasons'], function ($router): void {
     $router->get('/', 'Gamification\SeasonsController@getSeasons');
     $router->get('/current', [
         'uses' => SeasonsController::class.'@getCurrentSeason',
