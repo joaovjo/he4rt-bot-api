@@ -6,7 +6,7 @@ namespace He4rt\Message\Entities;
 
 use DateTimeImmutable;
 
-final class MessageEntity
+class MessageEntity
 {
     public function __construct(
         public string $id,

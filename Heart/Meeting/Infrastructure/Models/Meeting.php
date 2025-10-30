@@ -57,6 +57,7 @@ final class Meeting extends Model
     {
         return MeetingFactory::new();
     }
+
     protected function casts(): array
     {
         return [

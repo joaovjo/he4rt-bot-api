@@ -10,11 +10,11 @@ use Heart\Provider\Domain\Enums\ProviderEnum;
 use Heart\Provider\Domain\Repositories\ProviderRepository;
 use Heart\User\Domain\Repositories\UserRepository;
 
-final readonly class NewAccountByProvider
+class NewAccountByProvider
 {
     public function __construct(
-        private UserRepository $userRepository,
-        private ProviderRepository $providerRepository,
+        private readonly UserRepository $userRepository,
+        private readonly ProviderRepository $providerRepository,
     ) {}
 
     public function handle(ProviderEnum $providerEnum, string $providerId, string $username): ProviderEntity

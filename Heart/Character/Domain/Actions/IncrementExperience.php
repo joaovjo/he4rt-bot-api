@@ -7,11 +7,11 @@ namespace Heart\Character\Domain\Actions;
 use Heart\Character\Domain\Enums\VoiceStatesEnum;
 use Heart\Character\Domain\Repositories\CharacterRepository;
 
-final readonly class IncrementExperience
+class IncrementExperience
 {
     public function __construct(
-        private CharacterRepository $characterRepository,
-        private FindCharacter $findCharacter
+        private readonly CharacterRepository $characterRepository,
+        private readonly FindCharacter $findCharacter
     ) {}
 
     public function incrementByTextMessage(string $characterId, string $message): int

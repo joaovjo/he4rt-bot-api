@@ -63,9 +63,8 @@ final readonly class NewMessage
         return $this->characterExperience->incrementByTextMessage($characterId, $content);
     }
 
-    private function meetingAttender(
-        ProviderEntity $providerEntity,
-    ): void {
+    private function meetingAttender(ProviderEntity $providerEntity): void
+    {
         if (! Cache::tags(['meetings'])->has('current-meeting')) {
             return;
         }

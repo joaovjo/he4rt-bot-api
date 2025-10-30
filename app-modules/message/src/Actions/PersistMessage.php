@@ -8,10 +8,10 @@ use He4rt\Message\DTOs\NewMessageDTO;
 use He4rt\Message\Entities\MessageEntity;
 use He4rt\Message\Repositories\MessageRepository;
 
-final readonly class PersistMessage
+class PersistMessage
 {
     public function __construct(
-        private MessageRepository $messageRepository
+        private readonly MessageRepository $messageRepository
     ) {}
 
     public function handle(

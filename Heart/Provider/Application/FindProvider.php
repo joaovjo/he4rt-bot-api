@@ -9,9 +9,9 @@ use Heart\Provider\Domain\Entities\ProviderEntity;
 use Heart\Shared\Application\TTL;
 use Illuminate\Support\Facades\Cache;
 
-final readonly class FindProvider
+class FindProvider
 {
-    public function __construct(private GetProviderById $action) {}
+    public function __construct(private readonly GetProviderById $action) {}
 
     public function handle(string $provider, string $providerId): ProviderEntity
     {

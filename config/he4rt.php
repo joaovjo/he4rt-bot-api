@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Date;
 
 return [
     'season' => [
-        'id' => env('HE4RT_SEASON_ID', 2),
+        'id' => (int) env('HE4RT_SEASON_ID', 2),
         'minimum_level_for_retro' => env('HE4RT_SEASON_MIN_LEVEL', 3),
     ],
     'server_key' => env('HE4RT_BOT_SECRET', 'he4rt'),

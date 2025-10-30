@@ -30,7 +30,7 @@ final readonly class BadgeEloquentRepository implements BadgeRepository
         return BadgeEntity::make($model->toArray());
     }
 
-    public function delete(string $badgeId): void
+    public function delete(int $badgeId): void
     {
         $this->model->newQuery()
             ->find($badgeId)
