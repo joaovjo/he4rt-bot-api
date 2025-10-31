@@ -180,11 +180,52 @@ Tipos permitidos:
 - `ci` - CI/CD
 - `chore` - Manutenção
 
-Exemplos:
+#### Emojis Opcionais
+
+Você pode adicionar emojis no início das mensagens de commit para facilitar identificação visual:
+
+| Tipo do commit | Emoji | Palavra-chave |
+|----------------|-------|---------------|
+| Commit inicial | 🎉 `:tada:` | `init` |
+| Novo recurso | ✨ `:sparkles:` | `feat` |
+| Bugfix | 🐛 `:bug:` | `fix` |
+| Documentação | 📚 `:books:` | `docs` |
+| Testes | 🧪 `:test_tube:` | `test` |
+| Aprovação de teste | ✔️ `:heavy_check_mark:` | `test` |
+| Performance | ⚡ `:zap:` | `perf` |
+| Refatoração | ♻️ `:recycle:` | `refactor` |
+| Limpeza de código | 🧹 `:broom:` | `cleanup` |
+| Removendo arquivo | 🗑️ `:wastebasket:` | `remove` |
+| Infraestrutura | 🧱 `:bricks:` | `ci` |
+| Configuração | 🔧 `:wrench:` | `chore` |
+| Package.json | 📦 `:package:` | `build` |
+| Estilização | 💄 `:lipstick:` | `feat` |
+| Dados | 🗃️ `:card_file_box:` | `raw` |
+| Comentários | 💡 `:bulb:` | `docs` |
+| Segurança | 🔒️ `:lock:` | - |
+| Responsividade | 📱 `:iphone:` | - |
+
+#### Exemplos sem emoji:
 ```bash
 git commit -m "feat(character): adiciona endpoint de criação de personagem"
 git commit -m "fix(auth): corrige validação de token"
 git commit -m "docs: atualiza README com instruções de setup"
+```
+
+#### Exemplos com emoji:
+```bash
+git commit -m "🎉 init: Commit inicial"
+git commit -m "✨ feat(character): adiciona endpoint de criação de personagem"
+git commit -m "🐛 fix(auth): corrige validação de token"
+git commit -m "📚 docs: atualiza README com instruções de setup"
+git commit -m "🧪 test: adiciona testes para CharacterController"
+git commit -m "⚡ perf: melhoria no tempo de resposta da API"
+git commit -m "♻️ refactor: migra para arrow functions"
+git commit -m "🧹 cleanup: remove código comentado"
+git commit -m "🗑️ remove: remove arquivos não utilizados"
+git commit -m "🧱 ci: adiciona workflow de commit-check"
+git commit -m "🔧 chore: atualiza dependências"
+git commit -m "💄 feat: estilização CSS do dashboard"
 ```
 
 ### Conventional Branch
