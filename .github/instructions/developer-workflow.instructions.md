@@ -35,3 +35,12 @@ Quality gates live in Makefile and Composer scripts:
 - Read values through `config()` instead of `env()` in runtime code
 - Example: `config('he4rt.server_key')` not `env('HE4RT_BOT_SECRET')`
 - Environment-specific overrides go in `.env` (local), `.env.testing` (tests), or `.env.pipeline` (CI)
+
+## Pre-commit Hooks
+- Install pre-commit: `pip install pre-commit`
+- Install hooks: `pre-commit install --hook-type pre-commit --hook-type commit-msg`
+- Automatically validates:
+  - Commit messages following Conventional Commits
+  - Branch names following Conventional Branch
+- Configuration in `.pre-commit-config.yaml` uses commit-check hooks
+- Runs locally before commits reach GitHub Actions

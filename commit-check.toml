@@ -1,0 +1,59 @@
+# commit-check configuration for He4rt Bot API
+# https://commit-check.github.io/commit-check/configuration.html
+
+[commit]
+# Enable Conventional Commits specification
+# https://www.conventionalcommits.org/pt-br/v1.0.0/
+conventional_commits = true
+
+# Subject line validation
+subject_capitalized = false # Allow lowercase (common in Portuguese)
+subject_imperative = false  # Don't enforce imperative mood
+subject_max_length = 100    # Max 100 characters for subject
+subject_min_length = 10     # Min 10 characters for subject
+
+# Tipos de commit permitidos
+allow_commit_types = [
+    "feat",     # Nova funcionalidade
+    "fix",      # Correção de bug
+    "docs",     # Documentação
+    "style",    # Formatação, lint
+    "refactor", # Refatoração
+    "perf",     # Performance
+    "test",     # Testes
+    "build",    # Build/dependências
+    "ci",       # CI/CD
+    "chore",    # Manutenção
+    "revert",   # Reversão
+]
+
+# Commit type options
+allow_merge_commits = true
+allow_revert_commits = true
+allow_empty_commits = false
+allow_fixup_commits = true
+allow_wip_commits = false
+
+# Body and footer options
+require_body = false
+require_signed_off_by = false
+
+[branch]
+# Enable Conventional Branch specification
+# https://conventional-branch.github.io/pt-br/
+conventional_branch = true
+
+# Tipos de branch permitidos
+allow_branch_types = [
+    "feat",
+    "feature",
+    "fix",
+    "bugfix",
+    "hotfix",
+    "release",
+    "chore",
+    "docs",
+    "refactor",
+    "test",
+    "perf",
+]

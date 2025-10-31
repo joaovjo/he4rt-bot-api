@@ -1,0 +1,32 @@
+# Pre-commit hooks for He4rt Bot API
+# https://pre-commit.com/
+# https://commit-check.github.io/commit-check/example.html#running-as-pre-commit-hook
+
+# Install pre-commit hooks:
+#   pip install pre-commit
+#   pre-commit install --hook-type pre-commit --hook-type commit-msg
+
+repos:
+  # Commit-check validation
+  - repo: https://github.com/commit-check/commit-check
+    rev: v2.1.1
+    hooks:
+      # Validate commit message following Conventional Commits
+      - id: check-message
+        stages: [commit-msg]
+        name: Check commit message
+        description: Validate commit message follows Conventional Commits specification
+
+      # Validate branch name following Conventional Branch
+      - id: check-branch
+        name: Check branch name
+        description: Validate branch name follows Conventional Branch specification
+
+      # Optional: Uncomment to enable author validation
+      # - id: check-author-name
+      #   name: Check author name
+      #   description: Validate committer author name
+
+      # - id: check-author-email
+      #   name: Check author email
+      #   description: Validate committer author email
