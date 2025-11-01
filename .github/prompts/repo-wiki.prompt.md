@@ -1,6 +1,6 @@
 ---
 agent: agent
-model: Auto (copilot)
+model: Claude Sonnet 4.5 (copilot)
 description: 'Gera e mantém documentação estruturada do projeto automaticamente, sincronizada com mudanças no código.'
 argument-hint: 'Especifique: (1) operação desejada [generate|update|sync], (2) escopo [full|incremental|specific-paths], (3) idioma preferido, (4) formato de saída [markdown|html]'
 name: 'Repo-Wiki-Generator'
