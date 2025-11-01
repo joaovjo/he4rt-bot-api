@@ -1,0 +1,369 @@
+{
+    "version": "1.0.0",
+    "generated_at": "2025-10-31T00:00:00Z",
+    "generated_by": "Copilot-LLM",
+    "project": {
+        "name": "he4rt-bot-api",
+        "language": "php",
+        "languages": [
+            "php",
+            "javascript"
+        ],
+        "architecture": "DDD (inferred)",
+        "frameworks": [
+            "Laravel",
+            "Lumen (legacy)"
+        ]
+    },
+    "graph": {
+        "nodes": [
+            {
+                "id": "authentication-oauth",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/authentication-oauth.md",
+                "source_file": "Heart/Authentication/OAuth",
+                "layer": "domain",
+                "tags": [
+                    "domain",
+                    "authentication"
+                ],
+                "description": "Domínio de autenticação e OAuth",
+                "public_api": true
+            },
+            {
+                "id": "character",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/character.md",
+                "source_file": "Heart/Character",
+                "layer": "domain",
+                "tags": [
+                    "domain"
+                ],
+                "description": "Domínio Character",
+                "public_api": false
+            },
+            {
+                "id": "core",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/core.md",
+                "source_file": "Heart/Core",
+                "layer": "domain",
+                "tags": [
+                    "domain"
+                ],
+                "description": "Domínio Core",
+                "public_api": false
+            },
+            {
+                "id": "feedback",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/feedback.md",
+                "source_file": "Heart/Feedback",
+                "layer": "domain",
+                "tags": [
+                    "domain",
+                    "feedback"
+                ],
+                "description": "Domínio Feedback",
+                "public_api": true
+            },
+            {
+                "id": "integrations",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/integrations.md",
+                "source_file": "Heart/Integrations",
+                "layer": "domain",
+                "tags": [
+                    "domain",
+                    "integration"
+                ],
+                "description": "Domínio Integrations",
+                "public_api": false
+            },
+            {
+                "id": "meeting",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/meeting.md",
+                "source_file": "Heart/Meeting",
+                "layer": "domain",
+                "tags": [
+                    "domain",
+                    "meeting"
+                ],
+                "description": "Domínio Meeting",
+                "public_api": true
+            },
+            {
+                "id": "provider",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/provider.md",
+                "source_file": "Heart/Provider",
+                "layer": "domain",
+                "tags": [
+                    "domain"
+                ],
+                "description": "Domínio Provider",
+                "public_api": false
+            },
+            {
+                "id": "ranking",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/ranking.md",
+                "source_file": "Heart/Ranking",
+                "layer": "domain",
+                "tags": [
+                    "domain",
+                    "ranking"
+                ],
+                "description": "Domínio Ranking",
+                "public_api": true
+            },
+            {
+                "id": "season",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/season.md",
+                "source_file": "Heart/Season",
+                "layer": "domain",
+                "tags": [
+                    "domain",
+                    "season"
+                ],
+                "description": "Domínio Season",
+                "public_api": true
+            },
+            {
+                "id": "shared",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/shared.md",
+                "source_file": "Heart/Shared",
+                "layer": "domain",
+                "tags": [
+                    "domain"
+                ],
+                "description": "Domínio Shared",
+                "public_api": false
+            },
+            {
+                "id": "user",
+                "type": "domain",
+                "file": ".autodocs/pt-br/domains/user.md",
+                "source_file": "Heart/User",
+                "layer": "domain",
+                "tags": [
+                    "domain",
+                    "user"
+                ],
+                "description": "Domínio User",
+                "public_api": true
+            },
+            {
+                "id": "module-badge",
+                "type": "module",
+                "file": ".autodocs/pt-br/modules/badge.md",
+                "source_file": "app-modules/badge",
+                "layer": "module",
+                "tags": [
+                    "module",
+                    "badge"
+                ],
+                "description": "Módulo de badges",
+                "public_api": true
+            },
+            {
+                "id": "module-message",
+                "type": "module",
+                "file": ".autodocs/pt-br/modules/message.md",
+                "source_file": "app-modules/message",
+                "layer": "module",
+                "tags": [
+                    "module",
+                    "message"
+                ],
+                "description": "Módulo de mensagens",
+                "public_api": true
+            },
+            {
+                "id": "readme",
+                "type": "doc",
+                "file": ".autodocs/pt-br/README.md",
+                "layer": "doc",
+                "tags": [
+                    "documentation"
+                ],
+                "description": "Página inicial do wiki",
+                "public_api": false
+            },
+            {
+                "id": "architecture",
+                "type": "doc",
+                "file": ".autodocs/pt-br/architecture.md",
+                "layer": "doc",
+                "tags": [
+                    "architecture"
+                ],
+                "description": "Arquitetura geral",
+                "public_api": false
+            },
+            {
+                "id": "api-endpoints",
+                "type": "api-doc",
+                "file": ".autodocs/pt-br/apis/endpoints.md",
+                "layer": "doc",
+                "tags": [
+                    "api"
+                ],
+                "description": "Lista de endpoints",
+                "public_api": true
+            },
+            {
+                "id": "api-contracts",
+                "type": "api-doc",
+                "file": ".autodocs/pt-br/apis/contracts.md",
+                "layer": "doc",
+                "tags": [
+                    "api"
+                ],
+                "description": "Contratos de API",
+                "public_api": true
+            }
+        ],
+        "edges": [
+            {
+                "from": "api-endpoints",
+                "to": "user",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-endpoints",
+                "to": "ranking",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-endpoints",
+                "to": "feedback",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-endpoints",
+                "to": "meeting",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-endpoints",
+                "to": "season",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-endpoints",
+                "to": "module-badge",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-endpoints",
+                "to": "module-message",
+                "type": "references",
+                "weight": 1
+            }
+        ]
+    },
+    "statistics": {
+        "total_components": 17,
+        "total_relationships": 7,
+        "total_files_documented": 17,
+        "coverage_percentage": 0,
+        "avg_dependencies_per_component": 0.41,
+        "most_depended_on": [],
+        "isolated_components": []
+    },
+    "index": {
+        "by_type": {
+            "domain": [
+                "authentication-oauth",
+                "character",
+                "core",
+                "feedback",
+                "integrations",
+                "meeting",
+                "provider",
+                "ranking",
+                "season",
+                "shared",
+                "user"
+            ],
+            "module": [
+                "module-badge",
+                "module-message"
+            ],
+            "doc": [
+                "readme",
+                "architecture"
+            ],
+            "api-doc": [
+                "api-endpoints",
+                "api-contracts"
+            ]
+        },
+        "by_layer": {
+            "domain": [
+                "authentication-oauth",
+                "character",
+                "core",
+                "feedback",
+                "integrations",
+                "meeting",
+                "provider",
+                "ranking",
+                "season",
+                "shared",
+                "user"
+            ],
+            "module": [
+                "module-badge",
+                "module-message"
+            ],
+            "doc": [
+                "readme",
+                "architecture",
+                "api-endpoints",
+                "api-contracts"
+            ]
+        },
+        "by_tag": {
+            "authentication": [
+                "authentication-oauth"
+            ],
+            "ranking": [
+                "ranking"
+            ],
+            "season": [
+                "season"
+            ],
+            "feedback": [
+                "feedback"
+            ],
+            "meeting": [
+                "meeting"
+            ],
+            "module": [
+                "module-badge",
+                "module-message"
+            ],
+            "api": [
+                "api-endpoints",
+                "api-contracts"
+            ],
+            "documentation": [
+                "readme"
+            ],
+            "architecture": [
+                "architecture"
+            ]
+        }
+    }
+}
