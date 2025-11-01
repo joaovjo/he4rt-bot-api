@@ -4,7 +4,7 @@ model: Auto (copilot)
 description: 'Gera e mantém documentação estruturada do projeto automaticamente, sincronizada com mudanças no código.'
 argument-hint: 'Especifique: (1) operação desejada [generate|update|sync], (2) escopo [full|incremental|specific-paths], (3) idioma preferido, (4) formato de saída [markdown|html]'
 name: 'Repo-Wiki-Generator'
-tools: []
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'runSubagent', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos', 'runTests']
 ---
 
 # Repo Wiki Generator
