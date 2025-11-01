@@ -1,6 +1,10 @@
 ---
-tags: [documentation, overview]
-aliases: [Wiki, Documentação]
+tags:
+  - documentation
+  - overview
+aliases:
+  - Wiki
+  - Documentação
 related:
   - "[[architecture]]"
   - "[[apis/endpoints]]"
