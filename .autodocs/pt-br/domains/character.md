@@ -16,10 +16,63 @@ related:
 [Descrição do domínio Character.]
 
 ## Estrutura de Arquivos
-[Árvore do domínio.]
+```
+Character/
+├── Application/
+│   ├── ClaimCharacterBadge.php
+│   ├── ClaimDailyBonus.php
+│   ├── FindCharacterIdByUserId.php
+│   └── (outros casos de uso)
+├── Domain/
+│   ├── Actions/
+│   │   ├── FindCharacter.php
+│   │   ├── GetCharacterByUserId.php
+│   │   ├── IncrementExperience.php
+│   │   ├── ManageReputation.php
+│   │   ├── PaginateCharacters.php
+│   │   ├── PersistClaimedBadge.php
+│   │   └── PersistDailyBonus.php
+│   ├── Collections/
+│   │   └── PastSeasonCollection.php
+│   ├── Entities/
+│   │   ├── CharacterEntity.php
+│   │   ├── DailyRewardEntity.php
+│   │   ├── LevelEntity.php
+│   │   ├── PastSeasonEntity.php
+│   │   └── ReputationEntity.php
+│   ├── Enums/
+│   │   └── VoiceStatesEnum.php
+│   ├── Exceptions/
+│   │   ├── CharacterException.php
+│   │   └── LevelException.php
+│   └── Repositories/
+│       └── CharacterRepository.php
+├── Infrastructure/
+│   ├── Factories/
+│   │   ├── CharacterFactory.php
+│   │   ├── PastSeasonFactory.php
+│   │   └── WalletFactory.php
+│   ├── Models/
+│   │   ├── Character.php
+│   │   ├── PastSeason.php
+│   │   └── Wallet.php
+│   ├── Providers/
+│   │   ├── CharacterRouteProvider.php
+│   │   └── CharacterServiceProvider.php
+│   └── Repositories/
+│       └── CharacterEloquentRepository.php
+└── Presentation/
+  ├── Controllers/
+  │   └── CharactersController.php
+  └── Requests/
+    └── ClaimBadgeRequest.php
+```
 
 ## Organização Arquitetural
-[Camadas e serviços.]
+- Application: casos de uso de progressão, badges e consulta
+- Domain: entidades, coleções, enums, exceções, ações e contrato de repositório
+- Infrastructure: models, factories, repositórios e providers
+- Presentation: controller e requests
 
 ## Principais Elementos
 

@@ -269,16 +269,127 @@
                 "to": "module-message",
                 "type": "references",
                 "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "user",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "feedback",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "meeting",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "provider",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "module-badge",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "module-message",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "ranking",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "season",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "api-contracts",
+                "to": "authentication-oauth",
+                "type": "references",
+                "weight": 1
+            },
+            {
+                "from": "user",
+                "to": "shared",
+                "type": "depends-on",
+                "weight": 1
+            },
+            {
+                "from": "meeting",
+                "to": "provider",
+                "type": "depends-on",
+                "weight": 1
+            },
+            {
+                "from": "meeting",
+                "to": "shared",
+                "type": "depends-on",
+                "weight": 1
+            },
+            {
+                "from": "provider",
+                "to": "authentication-oauth",
+                "type": "depends-on",
+                "weight": 1
+            },
+            {
+                "from": "integrations",
+                "to": "authentication-oauth",
+                "type": "depends-on",
+                "weight": 1
+            },
+            {
+                "from": "ranking",
+                "to": "character",
+                "type": "depends-on",
+                "weight": 1
+            },
+            {
+                "from": "ranking",
+                "to": "shared",
+                "type": "depends-on",
+                "weight": 1
+            },
+            {
+                "from": "feedback",
+                "to": "user",
+                "type": "depends-on",
+                "weight": 1
+            },
+            {
+                "from": "feedback",
+                "to": "provider",
+                "type": "depends-on",
+                "weight": 1
             }
         ]
     },
     "statistics": {
         "total_components": 17,
-        "total_relationships": 7,
+        "total_relationships": 25,
         "total_files_documented": 17,
         "coverage_percentage": 0,
-        "avg_dependencies_per_component": 0.41,
-        "most_depended_on": [],
+        "avg_dependencies_per_component": 1.47,
+        "most_depended_on": [
+            "shared",
+            "authentication-oauth"
+        ],
         "isolated_components": []
     },
     "index": {
@@ -349,6 +460,12 @@
             ],
             "meeting": [
                 "meeting"
+            ],
+            "user": [
+                "user"
+            ],
+            "integration": [
+                "integrations"
             ],
             "module": [
                 "module-badge",

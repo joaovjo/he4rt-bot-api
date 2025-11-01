@@ -16,10 +16,32 @@ related:
 [Descrição do domínio de autenticação e OAuth.]
 
 ## Estrutura de Arquivos
-[Árvore do domínio, se aplicável.]
+```
+Authentication/OAuth/
+├── Application/
+│   └── OAuthService.php
+├── Domain/
+│   ├── DTO/
+│   │   ├── OAuthUserDTO.php
+│   │   └── OAuthAccessDTO.php
+│   └── Interfaces/
+│       └── OAuthClientContract.php
+├── Infrastructure/
+│   ├── Enums/
+│   │   └── OAuthProviderEnum.php
+│   └── Providers/
+│       ├── AuthenticationServiceProvider.php
+│       └── AuthenticationRouteProvider.php
+└── Presentation/
+  └── Controllers/
+    └── OAuthController.php
+```
 
 ## Organização Arquitetural
-[Camadas, serviços e componentes relevantes.]
+- Application: serviço OAuth
+- Domain: contratos e DTOs
+- Infrastructure: enums, service provider e mapeamento de rotas
+- Presentation: controller HTTP
 
 ## Principais Elementos
 

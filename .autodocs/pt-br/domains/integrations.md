@@ -16,7 +16,31 @@ related:
 [Descrição do domínio Integrations.]
 
 ## Estrutura de Arquivos
-[Árvore.]
+```
+Integrations/
+└── Twitch/
+  ├── Common/
+  │   ├── TwitchBaseClient.php
+  │   ├── TwitchIntegrationProvider.php
+  │   └── TwitchService.php
+  ├── OAuth/
+  │   ├── Domain/
+  │   │   ├── DTO/
+  │   │   │   ├── TwitchOAuthAccessDTO.php
+  │   │   │   └── TwitchOAuthDTO.php
+  │   │   └── TwitchOAuthService.php
+  │   └── Infrastructure/
+  │       └── TwitchOAuthClient.php
+  └── Subscriber/
+    ├── Domain/
+    │   ├── DTO/
+    │   │   └── TwitchSubscriberDTO.php
+    │   ├── Enum/
+    │   │   └── SubscriptionTiersEnum.php
+    │   └── TwitchSubscribersService.php
+    └── Infrastructure/
+      └── TwitchSubscribersClient.php
+```
 
 ## Integrações
 [Listar integrações externas.]

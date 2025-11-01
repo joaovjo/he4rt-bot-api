@@ -13,30 +13,65 @@ related:
 > **Status**: Active
 
 ## Visão Geral
-[Descrição do domínio Core.]
+Núcleo de infraestrutura do domínio: descoberta/registro de domínios (DDD), ciclo de vida de providers e utilitários compartilhados (Singleton, DTOs, contratos e exceções).
 
 ## Estrutura de Arquivos
-[Árvore.]
+```
+Core/
+├── Classes/
+│   └── DomainManager.php
+├── Contracts/
+│   └── DomainInterface.php
+├── DTO/
+│   └── DomainDTO.php
+├── Exceptions/
+│   ├── DomainExtendException.php
+│   └── DomainNotExistsException.php
+├── Providers/
+│   └── CoreProvider.php
+└── Traits/
+  └── Singleton.php
+```
 
 ## Organização Arquitetural
-[Camadas e serviços.]
+- Classes
+  - DomainManager: Descobre domínios (pastas com arquivo `*Domain.php`), normaliza nomes, valida herança de `DomainInterface` e registra providers dos domínios ativos.
+- Contracts
+  - DomainInterface: Base abstrata para domínios anunciarem providers e estado (habilitado/desabilitado).
+- Providers
+  - CoreProvider: Registra dinamicamente providers retornados por todos os domínios.
+- Traits
+  - Singleton: Padroniza singletons com init() para inicialização preguiçosa.
 
 ## Principais Elementos
 
-### [Elemento]
-**Tipo**: [Class|Service]
-**Localização**: `path/to/file`
-**Responsabilidade**: [O que faz]
+### DomainManager
+**Tipo**: Classe de orquestração
+**Localização**: `Heart/Core/Classes/DomainManager.php`
+**Responsabilidade**: Descobrir e carregar domínios, validar contrato, registrar providers.
+
+### CoreProvider
+**Tipo**: Service Provider
+**Localização**: `Heart/Core/Providers/CoreProvider.php`
+**Responsabilidade**: Registrar todos os providers de domínios carregados.
 
 ## Fluxos de Dados
 ```mermaid
 graph LR
-  Core --> Outros
+  subgraph Core
+    DM[DomainManager] --> DI[DomainInterface]
+    CP[CoreProvider]
+  end
+  DM -->|descobre| Dominios
+  DM -->|registra| CP
+  CP -->|registra| Providers
 ```
 
 ## Notas de Implementação
 > [!note]
-> [Notas]
+> - Descoberta de domínios é baseada em convenção de arquivos terminando em `Domain.php`
+> - Exceções dedicadas para caminho inexistente e domínio inválido
+> - Usa Singleton para garantir inicialização controlada
 
 ## Tags
 #domain
